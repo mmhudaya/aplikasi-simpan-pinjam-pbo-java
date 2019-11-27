@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
+   <children>
+      <Pane id="sidebar" layoutX="230.0" prefHeight="726.0" prefWidth="970.0" style="-fx-background-color: #f3f5f7;">
+         <children>
+            <Pane layoutY="92.0" prefHeight="635.0" prefWidth="970.0" />
+            <Pane layoutX="-1.0" prefHeight="92.0" prefWidth="970.0">
+               <children>
+                  <Label id="viewName" layoutX="27.0" layoutY="29.0" text="Dashboard" textFill="#60636b">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="27.0" layoutY="58.0" text="Probably Everything You Need to See" textFill="#c3c5c9" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane id="content" prefHeight="726.0" prefWidth="230.0" style="-fx-background-color: #fff;">
+         <effect>
+            <DropShadow color="#babfc233" height="5.97" offsetX="2.0" radius="2.4749999999999996" spread="0.08" width="5.93" />
+         </effect>
+         <children>
+            <AnchorPane prefHeight="122.0" prefWidth="236.0" />
+            <VBox fx:id="sidebarMenuVbox" layoutY="113.0" prefHeight="418.0" prefWidth="230.0">
+               <children>
+                  <JFXButton alignment="BASELINE_LEFT" graphicTextGap="32.0" onAction="#onSidebarMenuClick" prefHeight="64.0" prefWidth="239.0" text="Dashboard" textAlignment="CENTER" textFill="#abafb2">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="BASELINE_LEFT" graphicTextGap="32.0" onAction="#onSidebarMenuClick" prefHeight="64.0" prefWidth="243.0" text="Register Member" textAlignment="CENTER" textFill="#abafb2">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="BASELINE_LEFT" graphicTextGap="32.0" onAction="#onSidebarMenuClick" prefHeight="64.0" prefWidth="237.0" text="Contact" textAlignment="CENTER" textFill="#abafb2">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="BASELINE_LEFT" graphicTextGap="32.0" onAction="#onSidebarMenuClick" prefHeight="64.0" prefWidth="242.0" text="Login" textAlignment="CENTER" textFill="#abafb2">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+               <padding>
+                  <Insets left="32.0" />
+               </padding>
+            </VBox>
+            <VBox layoutY="536.0" prefHeight="190.0" prefWidth="230.0">
+               <children>
+                  <JFXButton alignment="BASELINE_LEFT" graphicTextGap="32.0" onAction="#onSidebarMenuClick" prefHeight="64.0" prefWidth="239.0" text="FAQ" textAlignment="CENTER" textFill="#abafb2">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="BASELINE_LEFT" graphicTextGap="32.0" onAction="#onSidebarMenuClick" prefHeight="64.0" prefWidth="243.0" text="About Apps" textAlignment="CENTER" textFill="#abafb2">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="BASELINE_LEFT" graphicTextGap="32.0" onAction="#onSidebarMenuClick" prefHeight="64.0" prefWidth="237.0" text="Credits" textAlignment="CENTER" textFill="#abafb2">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+               <padding>
+                  <Insets left="32.0" />
+               </padding>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
