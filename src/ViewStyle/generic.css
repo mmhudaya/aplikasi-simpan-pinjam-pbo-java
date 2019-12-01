@@ -1,0 +1,79 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.btn-outline{
+    -fx-padding: 10px 20px 10px 20px;
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 2px;
+}
+
+.btn-outline:hover {
+    -fx-background-color: #FEFEFE;
+}
+
+.box-combo{
+    -fx-padding: 6px;
+    -fx-text-box-border: transparent;
+    -fx-border-color: #C5BCBC;
+    -fx-border-radius: 1px;
+    -fx-text-fill : black;
+    -fx-border-width: 1px;
+    -fx-background-color: #FCFCFC;
+    -jfx-focus-color: #4c4c4c00;
+    -jfx-unfocus-color: #4c4c4c00;
+}
+
+.form-text{
+    -fx-padding: 10px;
+    -fx-text-box-border: transparent;
+    -fx-border-color: #C5BCBC;
+    -fx-border-radius: 1px;
+    -fx-text-fill : black;
+    -fx-border-width: 1px;
+    -fx-background-color: #FCFCFC;
+    -jfx-focus-color: #4c4c4c00;
+    -jfx-unfocus-color: #4c4c4c00;
+}
+
+.form-text:focused{
+    -fx-background-color: white;
+    -fx-border-color: #AACADF;
+}
+
+.form-text-error{
+    -fx-border-color: #C5BCBC;
+    -fx-background-color: #F8EDED;
+}
+
+
+.btn{
+    -fx-padding: 10px;
+    -fx-border-color: transparent;
+    -fx-border-width: 0px;
+    -fx-border-radius: 2px;
+    -fx-background-color:black;
+    -fx-text-fill : white;
+}
+
+.btn:hover{
+    -fx-background-color:#3B3B3B;
+}
+
+.btn:disabled{
+    -fx-background-color:#BBB9C8;
+}
+
+.label-btn{
+    -fx-cursor: hand;
+}
+
+.sidebar-menu-btn{
+    -fx-text-fill: #dad8d8
+}
+
+.sidebar-menu-btn:hover{
+    -fx-background-color: #415367;
+}

@@ -5,8 +5,11 @@
  */
 package Controller;
 
+import Core.Controller.CorePage;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.Event;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -14,8 +17,14 @@ import javafx.fxml.Initializable;
  *
  * @author Muttabi Hudaya
  */
-public class AboutAppsController implements Initializable {
+public class AboutAppsController extends CorePage implements Initializable {
 
+    @FXML
+    private void onClickBackToLogin(Event ae){
+        System.out.println("backing");
+        super.getParentController().changePage("Login");
+    }
+    
     /**
      * Initializes the controller class.
      */
@@ -23,5 +32,10 @@ public class AboutAppsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @Override
+    public void onShown() {
+        //Nothing
+    }
     
 }

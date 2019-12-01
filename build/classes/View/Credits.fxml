@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
@@ -7,8 +10,138 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CreditsController">
+<AnchorPane id="AnchorPane" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CreditsController">
     <stylesheets>
-        <URL value="@/ViewStyle/credits.css"/>
+        <URL value="@/ViewStyle/credits.css" />
     </stylesheets>
+   <children>
+      <VBox layoutX="20.0" layoutY="20.0" prefHeight="750.0" prefWidth="820.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="164.0" prefWidth="820.0">
+               <children>
+                  <Pane prefHeight="99.0" prefWidth="135.0">
+                     <children>
+                        <Label onMouseClicked="#onClickBackToLogin" styleClass="label-btn" stylesheets="@../ViewStyle/generic.css" text="&lt;" textFill="#aaa4a4">
+                           <font>
+                              <Font name="Consolas Bold" size="38.0" />
+                           </font>
+                           <padding>
+                              <Insets top="40.0" />
+                           </padding>
+                        </Label>
+                        <Label layoutX="28.0" layoutY="15.0" onMouseClicked="#onClickBackToLogin" styleClass="label-btn" stylesheets="@../ViewStyle/generic.css" text="Back to Login" textFill="#aaa4a4">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets top="40.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="16.0" />
+                     </HBox.margin>
+                  </Pane>
+               </children>
+            </HBox>
+            <HBox prefHeight="711.0" prefWidth="790.0" style="-fx-background-color: white;">
+               <children>
+                  <VBox prefHeight="627.0" prefWidth="692.0" spacing="20.0">
+                     <children>
+                        <Label text="Credits">
+                           <font>
+                              <Font name="Arial Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <VBox prefHeight="204.0" prefWidth="692.0">
+                           <children>
+                              <HBox prefHeight="257.0" prefWidth="692.0" style="-fx-border-color: #C4C4C4;">
+                                 <children>
+                                    <Pane prefHeight="78.0" prefWidth="288.0" style="-fx-background-color: #20538F;" />
+                                    <VBox prefHeight="78.0" prefWidth="767.0">
+                                       <children>
+                                          <Label text="Berlian Kaida Palma">
+                                             <font>
+                                                <Font name="Arial Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="0.0" prefWidth="581.0" text="Mahasiswa Telkom Biasa" textFill="#a5a4a4" textOverrun="CLIP" wrapText="true">
+                                             <font>
+                                                <Font name="Arial" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="0.0" prefWidth="581.0" text="1301164144" textFill="#a5a4a4" textOverrun="CLIP" wrapText="true">
+                                             <font>
+                                                <Font name="Arial" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="TOP_LEFT" prefHeight="134.0" prefWidth="581.0" text="Hehe" textFill="#a5a4a4" textOverrun="CLIP" wrapText="true">
+                                             <font>
+                                                <Font name="Arial" size="12.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="8.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="7.0" top="14.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox prefHeight="204.0" prefWidth="692.0">
+                           <children>
+                              <HBox prefHeight="257.0" prefWidth="692.0" style="-fx-border-color: #C4C4C4;">
+                                 <children>
+                                    <Pane prefHeight="78.0" prefWidth="288.0" style="-fx-background-color: #20538F;" />
+                                    <VBox prefHeight="78.0" prefWidth="767.0">
+                                       <children>
+                                          <Label text="Muhammad Muttabi Hudaya">
+                                             <font>
+                                                <Font name="Arial Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="0.0" prefWidth="581.0" text="Mahasiswa Telkom Bukan Luar Biasa" textFill="#a5a4a4" textOverrun="CLIP" wrapText="true">
+                                             <font>
+                                                <Font name="Arial" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="0.0" prefWidth="581.0" text="1301198524" textFill="#a5a4a4" textOverrun="CLIP" wrapText="true">
+                                             <font>
+                                                <Font name="Arial" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="TOP_LEFT" prefHeight="123.0" prefWidth="568.0" text="Meruapakan mahasiswa biasa yang sayangnya tidak bisa menaklukan dunia karena tertahan Vitamin M yang berlebih. Selain itu mahasiswa &quot;ini&quot; juga sangat suka terhadap apapun yang berbau teknologi. Sayangnya suka bukan berarti hebat, dan hebat bukan berarti suka. Masih berusaha sebisa mungkin untuk menjadi &quot;hebat&quot;, tapi mungkin akan tersendat. Selebihnya mahasiswa &quot;ini&quot; masih terheran-heran untuk menulis deskripsi apalagi." textAlignment="JUSTIFY" textFill="#a5a4a4" textOverrun="CLIP" wrapText="true">
+                                             <font>
+                                                <Font name="Arial" size="12.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="8.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="7.0" top="14.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="45.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

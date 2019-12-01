@@ -1,0 +1,66 @@
+[ANGGOTA]
+1. char 16 , nik #
+2. varchar 50, nama
+3. varchar 50, ttl
+4. varchar 12, jenis_kelamin
+5. varchar 2, golongan darah
+6. varchar 50, pekerjaan
+7. varchar 100, alamat
+8. varchar 60, email
+9. varchar 16, no_telp
+10. varchar 250, md5(password)
+11. boolean, is_aktif
+12. datetime, tgl_aktif
+12. boolean is_stop
+13. boolean is_pengurus
+
+[KELENGKAPAN_BERKAS]
+1. fk_id nik
+2. fk_id id_berkas
+
+[BERKAS]
+1. long, id #
+2. varchar 250, nama
+
+[SIMPAN]
+1. varchar 50, id #
+2. fk_id, anggota_nik
+2. fk_id, pengurus_nik
+3. fk_id, id_tipe_simpanan
+4. datetime, tgl_transaksi
+5. integer, jumlah
+
+[PINJAM]
+1. varchar 50, id #
+2. fk_id, anggota_nik
+2. fk_id, pengurus_nik
+4. fk_id, id tipe bunga
+5. datetime, tgl_transaksi
+6. integer, jumlah
+7. integer, tenor
+
+[TIPE_BUNGA]
+1. long, id #
+2. varchar 50, nama
+
+[TIPE_PINJAMAN]
+1. long id, #
+2. varchar 50, nama
+
+[TIPE_SIMPANAN]
+1. long id, #
+2. varchar 50, nama
+
+[ANGSURAN]
+1. varchar 50, id #
+2. fk_id, anggota_nik
+2. fk_id, pengurus_nik
+3. datetime, tgl_transaksi
+4. integer, jumlah
+
+[AMBIL]
+1. varchar 50, id #
+2. fk_id, anggota_nik
+2. fk_id, pengurus_nik
+3. datetime, tgl_transaksi
+4. integer, jumlah

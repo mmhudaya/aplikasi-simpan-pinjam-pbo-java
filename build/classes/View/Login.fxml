@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
@@ -7,8 +10,117 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="790.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
     <stylesheets>
-        <URL value="@/ViewStyle/login.css"/>
+        <URL value="@/ViewStyle/login.css" />
     </stylesheets>
+   <children>
+      <VBox prefHeight="720.0" prefWidth="790.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="29.0" prefWidth="184.0" text="Belum jadi anggota koperasi?" textFill="#aba6a6">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="8.0" />
+                     </HBox.margin>
+                  </Label>
+                  <JFXButton onAction="#onBtnRegisterClick" styleClass="btn-outline" stylesheets="@../ViewStyle/generic.css" text="REGISTERASI ANGGOTA">
+                     <font>
+                        <Font name="System Bold" size="10.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="4.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets right="16.0" top="16.0" />
+               </VBox.margin>
+            </HBox>
+            <BorderPane prefHeight="478.0" prefWidth="790.0">
+               <center>
+                  <VBox prefHeight="510.0" prefWidth="790.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="titleTest" text="Masuk ke Aplikasi">
+                           <font>
+                              <Font name="System Bold" size="42.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="TOP_LEFT" prefHeight="44.0" prefWidth="336.0" text="Isi detail login dibawah ini untuk masuk ke aplikasi" textFill="#c6c0c0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="17.0" prefWidth="203.0" text="NOMOR INDUK KEPENDUDUKAN">
+                           <font>
+                              <Font name="Arial Bold" size="9.0" />
+                           </font></Label>
+                        <JFXTextField focusColor="WHITE" fx:id="tfNik" prefHeight="22.0" prefWidth="790.0" promptText="Masukan NIK disini" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" unFocusColor="#4c4c4c00">
+                           <VBox.margin>
+                              <Insets top="4.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </JFXTextField>
+                        <Label text="PASSWORD">
+                           <font>
+                              <Font name="Arial Bold" size="9.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="16.0" />
+                           </VBox.margin></Label>
+                        <JFXPasswordField fx:id="tpfPassword" promptText="Masukan password disini" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" unFocusColor="#4d4d4d00">
+                           <VBox.margin>
+                              <Insets top="4.0" />
+                           </VBox.margin>
+                        </JFXPasswordField>
+                        <JFXButton onAction="#onBtnMasukClick" prefHeight="25.0" prefWidth="115.0" styleClass="btn" stylesheets="@../ViewStyle/generic.css" text="Masuk">
+                           <VBox.margin>
+                              <Insets top="32.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font></JFXButton>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
+                  </VBox>
+               </center>
+               <left>
+                  <AnchorPane prefHeight="478.0" prefWidth="104.0" BorderPane.alignment="CENTER" />
+               </left>
+               <right>
+                  <Pane prefHeight="377.0" prefWidth="310.0" BorderPane.alignment="CENTER" />
+               </right>
+               <top>
+                  <AnchorPane prefHeight="73.0" prefWidth="790.0" BorderPane.alignment="CENTER" />
+               </top>
+            </BorderPane>
+            <HBox alignment="BOTTOM_RIGHT" prefHeight="126.0" prefWidth="790.0">
+               <children>
+                  <Hyperlink fx:id="aboutAppsLink" onAction="#onClickLink" text="About Apps">
+                     <HBox.margin>
+                        <Insets bottom="32.0" right="16.0" />
+                     </HBox.margin>
+                  </Hyperlink>
+                  <Hyperlink fx:id="faqLink" onAction="#onClickLink" text="FAQ">
+                     <HBox.margin>
+                        <Insets bottom="32.0" right="16.0" />
+                     </HBox.margin>
+                  </Hyperlink>
+                  <Hyperlink fx:id="creditsLink" onAction="#onClickLink" text="Credits">
+                     <HBox.margin>
+                        <Insets bottom="32.0" right="32.0" />
+                     </HBox.margin>
+                  </Hyperlink>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

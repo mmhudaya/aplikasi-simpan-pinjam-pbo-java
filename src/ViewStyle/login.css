@@ -5,3 +5,13 @@
 .mainFxmlClass {
 
 }
+
+.btn-outline{
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 2px;
+}
+
+.btn-outline:hover{
+    -fx-background-color: #FEFEFE;
+}

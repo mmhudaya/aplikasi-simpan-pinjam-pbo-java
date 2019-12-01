@@ -5,27 +5,40 @@
  */
 package Main;
 
+import Controller.SplashScreenController;
+import Model.Anggota;
+import Model.Pengurus;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.scene.layout.VBox;
 
 /**
  *
  * @author Muttabi Hudaya
  */
 public class Main extends Application {
-    private boolean isLoggedIn = false;
+    //Srage and scene
+    public static Stage mainStage;
+    public static Scene mainScene;
+    
+    //Storage
+    public static Anggota anggota;
+    public static Pengurus pengurus;
+    private static boolean isLoggedIn = false;
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/View/MainView.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.show();
+        Main.mainStage = stage;
+        Main.mainStage.initStyle(StageStyle.UNDECORATED);
+        SplashScreenController spc = new SplashScreenController();
+        spc.setSceneName("SplashScreen");
+        spc.show();
     }
 
     /**
@@ -35,8 +48,20 @@ public class Main extends Application {
         launch(args);
     }
     
-    public void setUserLoggedIn(boolean loggedIn){
-        this.isLoggedIn = true;
+    //Storage
+    public static void setPengurus(Pengurus pengurus){
+        Main.pengurus = pengurus;
+    }
+    public static void setAnggota(Anggota anggota){
+        Main.anggota = anggota;
+    }
+    
+    public static void setUserLoggedIn(boolean loggedIn){
+        Main.isLoggedIn = true;
+        if(!loggedIn){
+            Main.pengurus = null;
+            Main.anggota = null;
+        }
     }
     
 }

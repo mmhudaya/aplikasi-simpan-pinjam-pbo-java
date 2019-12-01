@@ -1,0 +1,36 @@
+TODO
+ - Buat dokumen dulu (3 jam)
+ - Baru ngoding
+ - Kalau gk sempet ngumpulin, kumpulin seadanya cuman dokumen nya bagus at least
+
+
+Document
+Schematic = Table Physical yang FK nya di garis bawahi terus disambungin
+MVC = ?
+
+pinjaman . is_lunas
+
+
+
+nik, nama
+
+select t.*, a1.nama, a2.nama from transaksi AS t left join anggota AS a1 left join anggota AS a2 (contoh)
+
+
+dashboard user
+ - total pinjam
+ - total simpan
+ - total angsuran
+ - reminder angsuran
+
+dashboard pengurus
+ - total pinjam koperasi
+ - total simpan koperasi
+ - total angsuran koperasi
+ - orang yang lewat angsuran
+
+
+
+Formula angsuran
+ - Total Angsuran / tenor
+  -- jika total
