@@ -4,85 +4,109 @@
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.*?>
+<?import java.net.URL?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
-   <children>
-      <Pane id="sidebar" layoutX="230.0" prefHeight="726.0" prefWidth="970.0" style="-fx-background-color: #f3f5f7;">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1200.0" style="-fx-background-color: #f3f5f7;" stylesheets="@../ViewStyle/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
+    <children>
+      <HBox prefHeight="720.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane layoutY="92.0" prefHeight="635.0" prefWidth="970.0" />
-            <Pane layoutX="-1.0" prefHeight="92.0" prefWidth="970.0">
+            <VBox prefHeight="200.0" prefWidth="187.0" style="-fx-background-color: #3e4c5c;">
                <children>
-                  <Label id="viewName" layoutX="27.0" layoutY="29.0" text="Dashboard" textFill="#60636b">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="27.0" layoutY="58.0" text="Probably Everything You Need to See" textFill="#c3c5c9" />
+                  <VBox prefHeight="120.0" prefWidth="187.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Hi," textFill="#a2b0c1">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label text="John Doe" textFill="#a2b0c1">
+                                 <font>
+                                    <Font name="Arial" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Anda masuk sebagai " textFill="#818c9a">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="24.0" left="16.0" top="24.0" />
+                           </VBox.margin>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="sidebarMenuVbox" prefHeight="994.0" prefWidth="187.0" style="-fx-background-color: #3e4c5c;">
+                     <children>
+                        <JFXButton alignment="BASELINE_LEFT" graphicTextGap="32.0" onAction="#onSidebarMenuClick" prefHeight="64.0" prefWidth="239.0" text="Dashboard" textAlignment="CENTER" textFill="#dad8d8">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton alignment="BASELINE_LEFT" graphicTextGap="32.0" onAction="#onSidebarMenuClick" prefHeight="64.0" prefWidth="243.0" text="Register Member" textAlignment="CENTER" textFill="#abafb2">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton alignment="BASELINE_LEFT" graphicTextGap="32.0" onAction="#onSidebarMenuClick" prefHeight="64.0" prefWidth="237.0" text="Contact" textAlignment="CENTER" textFill="#abafb2">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton alignment="BASELINE_LEFT" graphicTextGap="32.0" onAction="#onSidebarMenuClick" prefHeight="64.0" prefWidth="242.0" text="Login" textAlignment="CENTER" textFill="#abafb2">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                     <padding>
+                        <Insets left="16.0" />
+                     </padding>
+                  </VBox>
+                  <VBox fx:id="sidebarMenuVbox1" prefHeight="598.0" prefWidth="230.0" style="-fx-background-color: #3e4c5c; -fx-border-color: #243C58; -fx-border-width: 1px 0 0 0;">
+                     <children>
+                        <JFXButton alignment="BASELINE_LEFT" graphicTextGap="32.0" onAction="#onSidebarMenuClick" prefHeight="46.0" prefWidth="171.0" styleClass="sidebar-menu-btn" stylesheets="@../ViewStyle/generic.css" text="Logout" textAlignment="CENTER" textFill="#abafb2">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                     <padding>
+                        <Insets left="16.0" />
+                     </padding>
+                  </VBox>
                </children>
-            </Pane>
-         </children>
-      </Pane>
-      <Pane id="content" prefHeight="726.0" prefWidth="230.0" style="-fx-background-color: #fff;">
-         <effect>
-            <DropShadow color="#babfc233" height="5.97" offsetX="2.0" radius="2.4749999999999996" spread="0.08" width="5.93" />
-         </effect>
-         <children>
-            <AnchorPane prefHeight="122.0" prefWidth="236.0" />
-            <VBox fx:id="sidebarMenuVbox" layoutY="113.0" prefHeight="418.0" prefWidth="230.0">
-               <children>
-                  <JFXButton alignment="BASELINE_LEFT" graphicTextGap="32.0" onAction="#onSidebarMenuClick" prefHeight="64.0" prefWidth="239.0" text="Dashboard" textAlignment="CENTER" textFill="#abafb2">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton alignment="BASELINE_LEFT" graphicTextGap="32.0" onAction="#onSidebarMenuClick" prefHeight="64.0" prefWidth="243.0" text="Register Member" textAlignment="CENTER" textFill="#abafb2">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton alignment="BASELINE_LEFT" graphicTextGap="32.0" onAction="#onSidebarMenuClick" prefHeight="64.0" prefWidth="237.0" text="Contact" textAlignment="CENTER" textFill="#abafb2">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton alignment="BASELINE_LEFT" graphicTextGap="32.0" onAction="#onSidebarMenuClick" prefHeight="64.0" prefWidth="242.0" text="Login" textAlignment="CENTER" textFill="#abafb2">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </JFXButton>
-               </children>
-               <padding>
-                  <Insets left="32.0" />
-               </padding>
             </VBox>
-            <VBox layoutY="536.0" prefHeight="190.0" prefWidth="230.0">
+            <VBox prefHeight="726.0" prefWidth="970.0">
                <children>
-                  <JFXButton alignment="BASELINE_LEFT" graphicTextGap="32.0" onAction="#onSidebarMenuClick" prefHeight="64.0" prefWidth="239.0" text="FAQ" textAlignment="CENTER" textFill="#abafb2">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton alignment="BASELINE_LEFT" graphicTextGap="32.0" onAction="#onSidebarMenuClick" prefHeight="64.0" prefWidth="243.0" text="About Apps" textAlignment="CENTER" textFill="#abafb2">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton alignment="BASELINE_LEFT" graphicTextGap="32.0" onAction="#onSidebarMenuClick" prefHeight="64.0" prefWidth="237.0" text="Credits" textAlignment="CENTER" textFill="#abafb2">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </JFXButton>
+                  <Pane fx:id="pageHeaderPane" prefHeight="92.0" prefWidth="970.0">
+                     <children>
+                        <Label fx:id="pageName" layoutY="43.0" text="Dashboard" textFill="#60636b">
+                           <font>
+                              <Font name="System Bold" size="26.0" />
+                           </font>
+                           <padding>
+                              <Insets left="32.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="pageSubSection" layoutY="74.0" text="Probably Everything You Need to See" textFill="#acb0bb">
+                           <padding>
+                              <Insets left="32.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <BorderPane fx:id="pageContainer" prefHeight="615.0" prefWidth="970.0" />
                </children>
-               <padding>
-                  <Insets left="32.0" />
-               </padding>
             </VBox>
          </children>
-      </Pane>
+      </HBox>
    </children>
 </AnchorPane>

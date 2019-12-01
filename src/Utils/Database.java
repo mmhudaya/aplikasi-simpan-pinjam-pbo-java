@@ -8,6 +8,7 @@ package Utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -22,20 +23,15 @@ public class Database {
     
     private Connection conn;
     
-    private void connect(){
-        try{
-            conn = (Connection) DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-        }catch(Exception ex){
-            System.out.println("Can't connect to database");
-            ex.printStackTrace();
-        }
+    public void connect() throws SQLException{
+        conn = (Connection) DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
     }
     
     public PreparedStatement getPrepareStatement(String query){
         try{
             this.connect();
             return conn.prepareStatement(query);
-        }catch(Exception ex){
+        }catch(SQLException ex){
             System.out.println("Can't get statement");
             ex.printStackTrace(); 
         }
@@ -47,7 +43,7 @@ public class Database {
         try{
             this.connect();
             return conn.createStatement();
-        }catch(Exception ex){
+        }catch(SQLException ex){
             System.out.println("Can't get statement");
             ex.printStackTrace(); 
         }

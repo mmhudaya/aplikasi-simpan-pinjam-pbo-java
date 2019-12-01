@@ -1,0 +1,13 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    
+}
+
+.register-btn{
+    border: solid black;
+    border-radius: 0.5em;
+    -fx-background-color: transparent;
+}

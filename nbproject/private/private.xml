@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Muttabi%20Hudaya/Documents/NetBeansProjects/test2/src/View/MainView.fxml</file>
-            <file>file:/C:/Users/Muttabi%20Hudaya/Documents/NetBeansProjects/test2/src/Controller/MainController.java</file>
-            <file>file:/C:/Users/Muttabi%20Hudaya/Documents/NetBeansProjects/test2/src/Core/Factory/ComponentFactory.java</file>
-            <file>file:/C:/Users/Muttabi%20Hudaya/Documents/NetBeansProjects/test2/src/Service/CalonAnggotaService.java</file>
+            <file>file:/D:/Boring%20Stuff/Work/mygit/aplikasi-simpan-pinjam-pbo-java/src/Controller/RegisterController.java</file>
+            <file>file:/D:/Boring%20Stuff/Work/mygit/aplikasi-simpan-pinjam-pbo-java/src/View/Login.fxml</file>
+            <file>file:/D:/Boring%20Stuff/Work/mygit/aplikasi-simpan-pinjam-pbo-java/src/Controller/LoginController.java</file>
+            <file>file:/D:/Boring%20Stuff/Work/mygit/aplikasi-simpan-pinjam-pbo-java/src/View/AboutApps.fxml</file>
+            <file>file:/D:/Boring%20Stuff/Work/mygit/aplikasi-simpan-pinjam-pbo-java/src/View/FAQ.fxml</file>
+            <file>file:/D:/Boring%20Stuff/Work/mygit/aplikasi-simpan-pinjam-pbo-java/src/Controller/FAQController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -5,35 +5,43 @@
  */
 package Core.Database;
 
+import Core.Interface.IDatabaseTable;
 import Utils.Database;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  *
  * @author Muttabi Hudaya
  */
-public abstract class CoreDatabaseTable<T extends IDatabaseModel> implements IDatabaseTable{
+public abstract class CoreDatabaseTable<T> implements IDatabaseTable{
     protected String tableName;
     protected String[] columnNames;
-    protected Database db;
+    protected Database db = new Database();
 
     public CoreDatabaseTable(String tableName, String[] columnNames){
-        this.db = new Database();
         this.tableName = tableName;
         this.columnNames = columnNames;
     }
     
     //Must return instanced it generic object
     public abstract T map(Object[] values);
+    protected abstract HashMap<String, Object> getValuesFromModelAttribute();
+    
+    public T selectOneByFilter(HashMap<String, Object> whereValues) {
+        return this.map(this.getOneByFilter(whereValues));
+    }
+    
+    public T selectOne(String key, Object value){
+        return this.map(this.get(key, value));
+    }
     
     @Override
     public List<T> getAll() {
@@ -45,7 +53,6 @@ public abstract class CoreDatabaseTable<T extends IDatabaseModel> implements IDa
             while(rs.next()){
                 rows.add(this.map(this.getRow(rs)));
             }
-            
             return rows;
         }catch(Exception ex){
             ex.printStackTrace();
@@ -59,11 +66,11 @@ public abstract class CoreDatabaseTable<T extends IDatabaseModel> implements IDa
         String query = this.getSelectAllQuery() +" "+this.getWhereClauseQuery(whereValue);
         List<T> rows = new ArrayList<>();
         
+        System.out.println(query);
         try{
             PreparedStatement pst = this.db.getPrepareStatement(query);
             pst = this.getAllPreparementStatement(pst, whereValue);
-            
-            ResultSet rs = pst.executeQuery(query);
+            ResultSet rs = pst.executeQuery();
             while(rs.next()){
                 rows.add(this.map(this.getRow(rs)));
             }
@@ -77,7 +84,7 @@ public abstract class CoreDatabaseTable<T extends IDatabaseModel> implements IDa
     }
 
     @Override
-    public Object[] get(String key, String value) {
+    public Object[] get(String key, Object value) {
         String query = this.getSelectOneQuery(key);
         
         try{
@@ -95,16 +102,101 @@ public abstract class CoreDatabaseTable<T extends IDatabaseModel> implements IDa
         return null;
     }
     
+    public Object[] getOneByFilter(HashMap<String, Object> whereValues) {
+        String query = this.getSelectOneWithFilterQuery(whereValues);
+        
+        try{
+            PreparedStatement pst = this.db.getPrepareStatement(query);
+            pst = this.getAllPreparementStatement(pst, whereValues);
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()){
+                return this.getRow(rs);
+            }
+            
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        
+        return null;
+    }
+    
+    
     @Override
-    public void save(Object[] values) {
+    public boolean save(HashMap<String, Object> values) {
         String query = this.getInsertQuery(values);
         try{
             PreparedStatement pst = this.db.getPrepareStatement(query);
-            pst = this.getAllPreparementStatement(pst, values);
+            pst = this.getAllInsertPreparementStatement(pst, values);
             int rowInserted = pst.executeUpdate();
             
             if(rowInserted > 0){
                 System.out.println("Success Insert");
+                return true;
+            }else{
+                System.out.println("Something Error occured");
+                return false;
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean update(HashMap values, HashMap whereValues) {
+        String query = this.getUpdateQuery(values, whereValues);
+        
+        try{
+            PreparedStatement pst = this.db.getPrepareStatement(query);
+            pst = this.getAllUpdatePreparementStatement(pst, values, whereValues);
+            int rowUpdated = pst.executeUpdate();
+            
+            if(rowUpdated > 0){
+                System.out.println("Success Update");
+                return true;
+            }else{
+                System.out.println("Something Error occured");
+                return false;
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return false;
+        
+    }
+    
+    
+
+    @Override
+    public boolean delete(HashMap<String, Object> whereValues) {
+        String query = this.getDeleteQuery(whereValues);
+        
+        try{
+            PreparedStatement pst = this.db.getPrepareStatement(query);
+            pst = this.getAllPreparementStatement(pst, whereValues);
+            int rowUpdated = pst.executeUpdate();
+            
+            if(rowUpdated > 0){
+                System.out.println("Success Update");
+                return true;
+            }else{
+                System.out.println("Something Error occured");
+                return false;
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return false;
+        
+    }
+
+    @Override
+    public void customCUDQuery(String query) {
+        try{
+            int rowUpdated = this.db.getStatement().executeUpdate(query);
+            
+            if(rowUpdated > 0){
+                System.out.println("Success custom query execution");
             }else{
                 System.out.println("Something Error occured");
             }
@@ -114,32 +206,55 @@ public abstract class CoreDatabaseTable<T extends IDatabaseModel> implements IDa
     }
 
     @Override
-    public void update(HashMap values, HashMap whereValues) {
-        String query = this.getUpdateQuery(values, whereValues);
-        
-        
+    public List<Object[]> customReadQuery(String query, int columnLength) {
+        List<Object[]> rows = new ArrayList<>();
         try{
-            PreparedStatement pst = this.db.getPrepareStatement(query);
-            pst = this.getAllPreparementStatement(pst, whereValues);
-            int rowUpdated = pst.executeUpdate();
+            int rowUpdated = this.db.getStatement().executeUpdate(query);
+            ResultSet rs = this.db.getStatement().executeQuery(query);
             
-            if(rowUpdated > 0){
-                System.out.println("Success Update");
-            }else{
-                System.out.println("Something Error occured");
+            while(rs.next()){
+                Object[] row = new Object[columnLength];
+                for(int i=0; i<=columnLength; i++){
+                    row[i] = rs.getObject(i);
+                }
+                rows.add(row);
             }
+            
+            return rows;
         }catch(Exception ex){
             ex.printStackTrace();
         }
         
+        return null;
     }
+    
+    @Override
+    public Object[] customReadOneQuery(String query, int columnLength) {
+        try{
+            int rowUpdated = this.db.getStatement().executeUpdate(query);
+            ResultSet rs = this.db.getStatement().executeQuery(query);
+            Object[] row = new Object[columnLength];
+            if(rs.next()){
+                for(int i=0; i<=columnLength; i++){
+                    row[i] = rs.getObject(i);
+                }
+            }
+            
+            return row;
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        
+        return null;
+    }
+    
+    
     
     //Utility
     private Object[] getRow(ResultSet rs) throws Exception{
         Object[] row = new Object[this.columnNames.length];
         for (int i = 0; i < this.columnNames.length; i++) {
-            String tableAttribute = this.columnNames[i];
-            row[i] = rs.getObject(i);
+            row[i] = rs.getObject(i+1);
         }
         return row;
     }
@@ -157,15 +272,47 @@ public abstract class CoreDatabaseTable<T extends IDatabaseModel> implements IDa
             pst.setInt(index, (Integer) value);
         }else if(value instanceof Long){
             pst.setLong(index, (Long) value);
+        }else if(value instanceof Timestamp){
+            pst.setTimestamp(index,(Timestamp) value);
         }
         
         return pst;
     }
     
     
-    private PreparedStatement getAllPreparementStatement(PreparedStatement pst, Object[] values) throws Exception{
-        for (int i = 0; i < values.length; i++) {
-            pst = this.getPreparedStatementType(pst, i, values[i]);
+    private PreparedStatement getAllInsertPreparementStatement(PreparedStatement pst, HashMap<String, Object> values) throws Exception{
+        Iterator it = values.entrySet().iterator();
+        int index = 1;
+        
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            if(pair.getValue() != null){
+                pst = this.getPreparedStatementType(pst, index, pair.getValue());
+                index++;
+            }
+            it.remove(); // avoids a ConcurrentModificationException
+        }
+        
+        return pst;
+    }
+    
+    private PreparedStatement getAllUpdatePreparementStatement(PreparedStatement pst, HashMap<String, Object> values, HashMap<String, Object> whereValues) throws Exception{
+        Iterator it = values.entrySet().iterator();
+        int index = 1;
+        
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            pst = this.getPreparedStatementType(pst, index, pair.getValue());
+            it.remove(); // avoids a ConcurrentModificationException
+            index++;
+        }
+        
+        it = whereValues.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            pst = this.getPreparedStatementType(pst, index, pair.getValue());
+            it.remove(); // avoids a ConcurrentModificationException
+            index++;
         }
         
         return pst;
@@ -173,7 +320,7 @@ public abstract class CoreDatabaseTable<T extends IDatabaseModel> implements IDa
     
     private PreparedStatement getAllPreparementStatement(PreparedStatement pst, HashMap<String, Object> whereValue) throws Exception{
         Iterator it = whereValue.entrySet().iterator();
-        int index = 0;
+        int index = 1;
         
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
@@ -185,11 +332,32 @@ public abstract class CoreDatabaseTable<T extends IDatabaseModel> implements IDa
         return pst;
     }
     
-    private String getInsertQuery(Object[] values){
-        String query = "INSERT INTO `"+this.tableName+"` VALUES (?";
-        String repeated = new String(new char[values.length-1]).replace("\0", ",?");
-        query += repeated + ")";
+    private String getInsertQuery(HashMap<String, Object> values){
+        String query = "INSERT INTO `"+this.tableName+"` ";
+        String queryValues = "";
+        String columnQuery = "";
         
+        Iterator it = values.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            if(pair.getValue() != null){
+                columnQuery += "`"+pair.getKey() + "`,";
+                queryValues += "?,";
+            }
+//            it.remove(); // avoids a ConcurrentModificationException/
+        }
+        
+        if (queryValues != null && queryValues.length() > 0) {
+            queryValues = queryValues.substring(0, queryValues.length() - 1);
+        }
+        if (columnQuery != null && columnQuery.length() > 0) {
+            columnQuery = columnQuery.substring(0, columnQuery.length() - 1);
+        }
+        
+        query+= "(" + columnQuery + ") VALUES ("+ queryValues +")"; 
+        
+        
+        System.out.println(query);
         return query;
     }
     
@@ -201,7 +369,6 @@ public abstract class CoreDatabaseTable<T extends IDatabaseModel> implements IDa
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
             query+= "`"+pair.getKey().toString()+"`=?, ";
-            it.remove(); // avoids a ConcurrentModificationException
         }
         
         //Remove last comma
@@ -210,32 +377,54 @@ public abstract class CoreDatabaseTable<T extends IDatabaseModel> implements IDa
         //get where clause
         query += this.getWhereClauseQuery(whereValue);
         
+        System.out.println(query);
+        return query;
+    }
+    
+    
+    
+    private String getDeleteQuery(HashMap whereValue){
+        String query = "DELETE FROM "+this.tableName; //password=?, fullname=?, email=? WHERE username=?";
+        
+        //get where clause
+        query += this.getWhereClauseQuery(whereValue);
+        
+        System.out.println(query);
         return query;
     }
     
     private String getWhereClauseQuery(HashMap whereValue){
         //WHERE clause query
-        String query = "";
+        String query = " WHERE ";
         Iterator it = whereValue.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
-            query+= "`"+pair.getKey().toString()+"`=? AND ";
-            it.remove(); // avoids a ConcurrentModificationException
+            query+= "`"+pair.getKey()+"`=? AND ";
         }
         
         //Remove last AND operator
-        query = query.substring(0, " AND ".length() - 1);
+        query = query.substring(0, query.length() - " AND ".length());
+        return query;
+    }
+    
+    
+    
+    private String getSelectOneWithFilterQuery(HashMap whereValue){
+        String query = "SELECT * FROM `"+this.tableName+"`";
+        String whereClause = this.getWhereClauseQuery(whereValue);
+        query += whereClause + " LIMIT 1";
         
+        System.out.println(query);
         return query;
     }
     
     private String getSelectOneQuery(String key){
-        String query = "SELECT * FROM "+this.tableName+" WHERE `"+key+"`=?";
+        String query = "SELECT * FROM `"+this.tableName+"` WHERE `"+key+"`=? LIMIT 1";
         return query;
     }
 
     private String getSelectAllQuery(){
-        return "SELECT * FROM "+this.tableName;
+        return "SELECT * FROM `"+this.tableName+"`";
     }
 
 }

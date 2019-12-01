@@ -5,23 +5,30 @@
  */
 package Controller;
 
+import Core.Controller.CorePage;
+import Core.Interface.IPageView;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
  *
  * @author Muttabi Hudaya
  */
-public class DashboardController implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
+public class DashboardController extends CorePage implements Initializable {
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+    public void onShown() {
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        
+    }
 }
