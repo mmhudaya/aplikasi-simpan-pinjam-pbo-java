@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="790.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Controller.AboutAppsController">
+   <children>
+      <VBox layoutX="20.0" layoutY="20.0" prefHeight="723.0" prefWidth="810.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="164.0" prefWidth="790.0">
+               <children>
+                  <Pane prefHeight="99.0" prefWidth="135.0">
+                     <children>
+                        <Label onMouseClicked="#onClickBackToLogin" styleClass="label-btn" stylesheets="@../ViewStyle/generic.css" text="&lt;" textFill="#aaa4a4">
+                           <font>
+                              <Font name="Consolas Bold" size="38.0" />
+                           </font>
+                           <padding>
+                              <Insets top="40.0" />
+                           </padding>
+                        </Label>
+                        <Label layoutX="28.0" layoutY="15.0" onMouseClicked="#onClickBackToLogin" styleClass="label-btn" stylesheets="@../ViewStyle/generic.css" text="Back to Login" textFill="#aaa4a4">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets top="40.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="16.0" />
+                     </HBox.margin>
+                  </Pane>
+               </children>
+            </HBox>
+            <HBox prefHeight="711.0" prefWidth="790.0" style="-fx-background-color: white;">
+               <children>
+                  <VBox prefHeight="589.0" prefWidth="692.0" spacing="20.0">
+                     <children>
+                        <Label text="About Apps">
+                           <font>
+                              <Font name="Arial Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <VBox prefHeight="264.0" prefWidth="692.0">
+                           <children>
+                              <Label alignment="TOP_LEFT" prefHeight="263.0" prefWidth="692.0" text="Aplikasi ini merupakan aplikasi simpan pinjam dimana user dapat mendaftar menjadi anggota koperasi dengan melakukan aktifasi dan konfirmasi terlebih dahulu kepada Pengurus. Setelah itu user akan dianggap menjadi anggota dan memiliki hak untuk masuk kedalam aplikasi.&#10;&#10;Aplikasi ini sangat mendukung untuk me-manage alur simpan pinjam yang terjadi pada sebuah koperasi. Dimana baik dari transaksi simpanan, pinjaman, angsuran, dan penarikan akan tercatat pada database yang telah diintegrasikan dengan aplikasi ini." textAlignment="JUSTIFY" textFill="#a5a4a4" textOverrun="CLIP" wrapText="true">
+                                 <font>
+                                    <Font name="Arial" size="18.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                        </VBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="45.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="32.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
