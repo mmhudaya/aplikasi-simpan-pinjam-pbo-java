@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
@@ -7,8 +10,115 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Anggota.PengajuanPeminjamanController">
-    <stylesheets>
-        <URL value="@/ViewStyle/pengajuanpeminjaman.css"/>
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="635.0" prefWidth="970.0" style="-fx-background-color: transparent;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Pengurus.TransaksiPengambilanController">
+   <children>
+      <VBox prefHeight="635.0" prefWidth="970.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="16.0">
+         <children>
+            <HBox prefHeight="59.0" prefWidth="573.0">
+               <children>
+                  <VBox prefHeight="52.0" prefWidth="386.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="203.0" text="Jumlah Pengambllan">
+                           <font>
+                              <Font name="Arial Bold" size="9.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="37.0" prefWidth="41.0" text="Rp" textFill="#c5bcbc">
+                                 <font>
+                                    <Font name="Arial Bold" size="25.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tfNik" focusColor="WHITE" prefHeight="37.0" prefWidth="348.0" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" unFocusColor="#4c4c4c00">
+                                 <font>
+                                    <Font name="Arial" size="12.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets top="12.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="64.0" prefWidth="898.0">
+               <children>
+                  <VBox prefHeight="64.0" prefWidth="501.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="203.0" text="Tenor">
+                           <font>
+                              <Font name="Arial Bold" size="9.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <JFXComboBox fx:id="cbJenisKelamin1" prefHeight="44.0" prefWidth="389.0" promptText="Pilih" styleClass="box-combo" stylesheets="@../ViewStyle/generic.css" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="12.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="65.0" prefWidth="288.0" spacing="12.0">
+               <children>
+                  <VBox prefHeight="65.0" prefWidth="188.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="203.0" text="Tipe Bunga">
+                           <font>
+                              <Font name="Arial Bold" size="9.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <JFXComboBox fx:id="cbGolonganDarah" prefHeight="54.0" prefWidth="348.0" promptText="Pilih" styleClass="box-combo" stylesheets="@../ViewStyle/generic.css" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="65.0" prefWidth="190.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="203.0" text="Suku Bunga">
+                           <font>
+                              <Font name="Arial Bold" size="9.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <JFXTextField fx:id="tfNik1" focusColor="WHITE" prefHeight="53.0" prefWidth="348.0" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" unFocusColor="#4c4c4c00">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="12.0" />
+               </VBox.margin>
+            </HBox>
+            <JFXButton disable="true" prefHeight="25.0" prefWidth="115.0" styleClass="btn" stylesheets="@../ViewStyle/generic.css" text="Submit">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="16.0" top="32.0" />
+               </VBox.margin>
+            </JFXButton>
+         </children>
+         <padding>
+            <Insets left="8.0" />
+         </padding>
+      </VBox>
+   </children>
+   <stylesheets>
+      <URL value="@/ViewStyle/transaksipengambilan.css" />
+   </stylesheets>
 </AnchorPane>

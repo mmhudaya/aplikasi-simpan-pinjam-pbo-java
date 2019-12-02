@@ -32,7 +32,8 @@ public class SplashScreenController extends CoreScene implements Initializable {
     @FXML
     private Label progressText;
     
-    private int seconds = 4;
+    private int COUNTDOWN_TIMER = 30;
+    private int seconds = COUNTDOWN_TIMER;
     
     private int countdownText = 3;
     private final String SET_BUTTON_TEXT = "Creating Buttons...";
@@ -72,14 +73,16 @@ public class SplashScreenController extends CoreScene implements Initializable {
                 pause.stop();
             }
         });
-        pause.play();
+        if(seconds > 0){
+            pause.play();
+        }
     }
     
     private void retryConnect(){
         this.progressText.setText("Retring connect to database in "+seconds+" seconds.");
         seconds--;
         if(seconds == 0){
-            seconds = 30;
+            seconds = COUNTDOWN_TIMER;
             this.checkDatabaseConnection();
         }
     }

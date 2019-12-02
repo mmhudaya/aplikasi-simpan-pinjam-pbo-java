@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
@@ -7,8 +10,191 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Pengurus.DashboardPengurusController">
-    <stylesheets>
-        <URL value="@/ViewStyle/dashboardpengurus.css"/>
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="635.0" prefWidth="970.0" style="-fx-background-color: transparent;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Pengurus.DashboardPengurusController">
+   <stylesheets>
+      <URL value="@/ViewStyle/transaksipengambilan.css" />
+   </stylesheets>
+   <children>
+      <VBox prefHeight="635.0" prefWidth="970.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox prefHeight="398.0" prefWidth="970.0" spacing="10.0">
+               <children>
+                  <Label text="Rangkuman Transaksi Koperasi">
+                     <VBox.margin>
+                        <Insets left="12.0" top="12.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox prefHeight="120.0" prefWidth="946.0" spacing="20.0">
+                     <children>
+                        <VBox prefHeight="190.0" prefWidth="230.0" style="-fx-background-color: purple;">
+                           <children>
+                              <Label contentDisplay="CENTER" text="Pinjaman" textFill="WHITE">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label contentDisplay="CENTER" text="Rp. 100.000.430,00" textFill="WHITE">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="8.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                        <VBox prefHeight="190.0" prefWidth="230.0" style="-fx-background-color: green;">
+                           <children>
+                              <Label contentDisplay="CENTER" text="Simpanan" textFill="WHITE">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label contentDisplay="CENTER" text="Rp. 22.000.430,00" textFill="WHITE">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="8.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                        <VBox prefHeight="190.0" prefWidth="230.0" style="-fx-background-color: blue;">
+                           <children>
+                              <Label contentDisplay="CENTER" text="Penarikan" textFill="WHITE">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label contentDisplay="CENTER" text="Rp. 10.000.000,00" textFill="WHITE">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="8.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                        <VBox prefHeight="190.0" prefWidth="230.0" style="-fx-background-color: brown;">
+                           <children>
+                              <Label contentDisplay="CENTER" text="Hutang" textFill="WHITE">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label contentDisplay="CENTER" text="Rp. 5.013.213,32" textFill="WHITE">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="8.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="12.0" right="12.0" top="12.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="635.0" prefWidth="970.0" spacing="10.0">
+               <children>
+                  <Label text="Rangkuman Transaksi Koperasi">
+                     <VBox.margin>
+                        <Insets left="12.0" top="12.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox prefHeight="120.0" prefWidth="946.0" spacing="20.0">
+                     <children>
+                        <VBox prefHeight="190.0" prefWidth="230.0" style="-fx-background-color: purple;">
+                           <children>
+                              <Label contentDisplay="CENTER" text="Pinjaman" textFill="WHITE">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Label contentDisplay="CENTER" text="Rp. 100.000.430,00" textFill="WHITE">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets bottom="20.0" left="8.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                        <VBox prefHeight="190.0" prefWidth="230.0" style="-fx-background-color: green;">
+                           <children>
+                              <Label contentDisplay="CENTER" text="Simpanan" textFill="WHITE">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label contentDisplay="CENTER" text="Rp. 22.000.430,00" textFill="WHITE">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="8.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                        <VBox prefHeight="190.0" prefWidth="230.0" style="-fx-background-color: blue;">
+                           <children>
+                              <Label contentDisplay="CENTER" text="Penarikan" textFill="WHITE">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label contentDisplay="CENTER" text="Rp. 10.000.000,00" textFill="WHITE">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="8.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                        <VBox prefHeight="190.0" prefWidth="230.0" style="-fx-background-color: brown;">
+                           <children>
+                              <Label contentDisplay="CENTER" text="Hutang" textFill="WHITE">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label contentDisplay="CENTER" text="Rp. 5.013.213,32" textFill="WHITE">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="8.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="12.0" right="12.0" top="12.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

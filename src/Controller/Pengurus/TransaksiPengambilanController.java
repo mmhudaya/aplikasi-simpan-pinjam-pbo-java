@@ -28,7 +28,7 @@ public class TransaksiPengambilanController extends CorePage implements Initiali
     }   
     
     public void setPageHeader() {
-        mc.setPageHeader("Transaksi Pengabilan", "Form Transaksi Pengabilan");
+        mc.setPageHeader("Transaksi Pengambilan", "Form Transaksi Pengambilan");
     }
 
     @Override
