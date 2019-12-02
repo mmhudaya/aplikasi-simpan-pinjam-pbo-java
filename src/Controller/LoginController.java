@@ -91,4 +91,9 @@ public class LoginController extends CorePage implements Initializable {
         //nothing
     }
     
+    @Override
+    public void onChangeAnyFormValue() {
+        //TODO
+    }
+    
 }

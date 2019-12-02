@@ -36,4 +36,9 @@ public class PengajuanPeminjamanController extends CorePage implements Initializ
         this.mc = (MainController) super.getParentController();
         this.setPageHeader();
     }
+    
+    @Override
+    public void onChangeAnyFormValue() {
+        //TODO
+    }
 }

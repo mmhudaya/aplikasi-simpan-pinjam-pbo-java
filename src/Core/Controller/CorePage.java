@@ -26,4 +26,6 @@ public abstract class CorePage{
     public void setParentController(CoreScene parentController){
         this.parentController = parentController;
     }
+    
+    public abstract void onChangeAnyFormValue();
 }

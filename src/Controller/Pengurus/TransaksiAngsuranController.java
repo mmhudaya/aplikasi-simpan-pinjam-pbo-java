@@ -38,4 +38,9 @@ public class TransaksiAngsuranController extends CorePage implements Initializab
     }
 
     
+    
+    @Override
+    public void onChangeAnyFormValue() {
+        //TODO
+    }
 }

@@ -31,4 +31,9 @@ public class DashboardController extends CorePage implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         
     }
+    
+    @Override
+    public void onChangeAnyFormValue() {
+        //No Form.
+    }
 }

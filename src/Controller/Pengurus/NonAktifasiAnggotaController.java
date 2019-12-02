@@ -37,4 +37,9 @@ public class NonAktifasiAnggotaController extends CorePage implements Initializa
         this.setPageHeader();
     }
     
+    
+    @Override
+    public void onChangeAnyFormValue() {
+        //TODO
+    }
 }

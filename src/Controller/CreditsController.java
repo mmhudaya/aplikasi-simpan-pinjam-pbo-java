@@ -45,4 +45,9 @@ public class CreditsController extends CorePage implements Initializable {
     public void onShown() {
         //nothing
     }
+    
+    @Override
+    public void onChangeAnyFormValue() {
+        //No Form.
+    }
 }

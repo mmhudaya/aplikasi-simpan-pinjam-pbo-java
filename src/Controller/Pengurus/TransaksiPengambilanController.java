@@ -37,4 +37,9 @@ public class TransaksiPengambilanController extends CorePage implements Initiali
         this.setPageHeader();
     }
 
+    
+    @Override
+    public void onChangeAnyFormValue() {
+        //TODO
+    }
 }

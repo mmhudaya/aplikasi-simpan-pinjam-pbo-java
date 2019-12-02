@@ -37,4 +37,9 @@ public class TransaksiSimpanController extends CorePage implements Initializable
         this.setPageHeader();
     }
 
+    
+    @Override
+    public void onChangeAnyFormValue() {
+        //TODO
+    }
 }

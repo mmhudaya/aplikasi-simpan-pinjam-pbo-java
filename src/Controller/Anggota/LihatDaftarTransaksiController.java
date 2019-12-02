@@ -36,4 +36,9 @@ public class LihatDaftarTransaksiController extends CorePage implements Initiali
         this.mc = (MainController) super.getParentController();
         this.setPageHeader();
     }
+    
+    @Override
+    public void onChangeAnyFormValue() {
+        //TODO
+    }
 }

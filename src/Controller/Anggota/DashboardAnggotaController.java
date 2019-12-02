@@ -36,4 +36,9 @@ public class DashboardAnggotaController extends CorePage implements Initializabl
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+    
+    @Override
+    public void onChangeAnyFormValue() {
+        //TODO
+    }
 }

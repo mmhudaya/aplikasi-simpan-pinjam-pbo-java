@@ -30,4 +30,9 @@ public class AktifasiAnggotaController extends CorePage implements Initializable
         //TODO
     }
     
+    
+    @Override
+    public void onChangeAnyFormValue() {
+        //TODO
+    }
 }

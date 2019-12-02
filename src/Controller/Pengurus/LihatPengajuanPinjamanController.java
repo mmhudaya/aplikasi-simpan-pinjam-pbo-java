@@ -39,4 +39,9 @@ public class LihatPengajuanPinjamanController extends CorePage implements Initia
     }
 
     
+    
+    @Override
+    public void onChangeAnyFormValue() {
+        //TODO
+    }
 }

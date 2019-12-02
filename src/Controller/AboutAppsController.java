@@ -37,5 +37,10 @@ public class AboutAppsController extends CorePage implements Initializable {
     public void onShown() {
         //Nothing
     }
+
+    @Override
+    public void onChangeAnyFormValue() {
+        //No Form.
+    }
     
 }

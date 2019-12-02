@@ -38,4 +38,9 @@ public class TransaksiPinjamController extends CorePage implements Initializable
     }
 
     
+    
+    @Override
+    public void onChangeAnyFormValue() {
+        //TODO
+    }
 }

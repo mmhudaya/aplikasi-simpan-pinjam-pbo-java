@@ -39,4 +39,9 @@ public class LihatTransaksiController extends CorePage implements Initializable 
     }
 
     
+    @Override
+    public void onChangeAnyFormValue() {
+        //TODO
+    }
+    
 }

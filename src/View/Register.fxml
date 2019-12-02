@@ -46,9 +46,9 @@
             </HBox>
             <HBox prefHeight="711.0" prefWidth="790.0" style="-fx-background-color: white;">
                <children>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="666.0" prefWidth="913.0" style="-fx-background: white; -fx-border-color: white;" vbarPolicy="NEVER">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="507.0" prefWidth="716.0" style="-fx-background: white; -fx-border-color: white;">
                      <content>
-                        <VBox prefHeight="621.0" prefWidth="604.0" spacing="4.0">
+                        <VBox prefHeight="681.0" prefWidth="604.0" spacing="4.0">
                            <children>
                               <Label text="Registrasi Anggota">
                                  <font>
@@ -140,7 +140,7 @@
                                                 <Insets bottom="4.0" />
                                              </VBox.margin>
                                           </Label>
-                                          <DatePicker fx:id="dpTanggalLahir" editable="false" prefHeight="37.0" prefWidth="324.0" promptText="Pilih Tanggal" styleClass="datepicker-c" stylesheets="@../ViewStyle/generic.css" />
+                                          <DatePicker fx:id="dpTanggalLahir" editable="false" prefHeight="37.0" prefWidth="324.0" promptText="Pilih Tanggal" styleClass="custom-date-picker" stylesheets="@../ViewStyle/generic.css" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -183,7 +183,7 @@
                                                 <Insets bottom="4.0" />
                                              </VBox.margin>
                                           </Label>
-                                          <JFXComboBox prefHeight="0.0" prefWidth="226.0" promptText="Pilih" styleClass="box-combo" stylesheets="@../ViewStyle/generic.css" />
+                                          <JFXComboBox fx:id="cbAgama" prefHeight="0.0" prefWidth="226.0" promptText="Pilih" styleClass="box-combo" stylesheets="@../ViewStyle/generic.css" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -215,7 +215,7 @@
                                           <Insets bottom="4.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <JFXTextField focusColor="WHITE" prefHeight="37.0" prefWidth="505.0" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" unFocusColor="#4c4c4c00">
+                                    <JFXTextField fx:id="tfAlamat" focusColor="WHITE" prefHeight="37.0" prefWidth="505.0" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" unFocusColor="#4c4c4c00">
                                        <font>
                                           <Font name="Arial" size="12.0" />
                                        </font>
@@ -290,14 +290,26 @@
                                     </VBox>
                                  </children>
                               </HBox>
-                              <JFXButton disable="true" prefHeight="25.0" prefWidth="115.0" styleClass="btn" stylesheets="@../ViewStyle/generic.css" text="Register">
-                                 <font>
-                                    <Font name="Arial Bold" size="12.0" />
-                                 </font>
+                              <HBox prefHeight="46.0" prefWidth="604.0">
+                                 <children>
+                                    <JFXButton fx:id="btnRegister" disable="true" onMouseClicked="#onClickBtnRegister" prefHeight="25.0" prefWidth="115.0" styleClass="btn" stylesheets="@../ViewStyle/generic.css" text="Register">
+                                       <font>
+                                          <Font name="Arial Bold" size="12.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <Label fx:id="errorLabel" prefHeight="35.0" prefWidth="244.0" textFill="#b94343">
+                                       <HBox.margin>
+                                          <Insets left="12.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="Arial" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
                                  <VBox.margin>
-                                    <Insets top="32.0" /> 
+                                    <Insets top="16.0" />
                                  </VBox.margin>
-                              </JFXButton>
+                              </HBox>
                            </children>
                         </VBox>
                      </content>
@@ -306,7 +318,11 @@
                      </HBox.margin>
                   </ScrollPane>
                </children>
+               <VBox.margin>
+                  <Insets top="32.0" />
+               </VBox.margin>
             </HBox>
+            <Pane prefHeight="151.0" prefWidth="790.0" />
          </children>
       </VBox>
    </children>
