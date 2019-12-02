@@ -29,7 +29,7 @@ public class MainController extends CoreScene implements Initializable {
     private VBox sidebarMenuVbox;
     
     @FXML
-    private BorderPane pageContainer;
+    private VBox pageContainer;
     
     @FXML
     private Pane pageHeaderPane; //Width: 970, Height: 635
@@ -75,6 +75,7 @@ public class MainController extends CoreScene implements Initializable {
             this.addSidebarMenu("Pendaftar", "LihatPendaftar");
             this.addSidebarMenu("Transaksi Saya", "LihatDaftarTransaksi");
             this.addSidebarMenu("Pengajuan Pinjaman", "PengajuanPeminjaman");
+            this.addSidebarMenu("Nonaktifasi Anggota", "NonAktifasiAnggota");
         }
         
             this.getSidebarMenuButton("Dashboard").fire();
@@ -98,7 +99,7 @@ public class MainController extends CoreScene implements Initializable {
         return sidebarMenuVbox;
     }
 
-    public BorderPane getPageContainer() {
+    public VBox getPageContainer() {
         return pageContainer;
     }
 

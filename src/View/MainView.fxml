@@ -103,7 +103,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <BorderPane fx:id="pageContainer" prefHeight="615.0" prefWidth="970.0" />
+                  <VBox fx:id="pageContainer" prefHeight="200.0" prefWidth="100.0" />
                </children>
             </VBox>
          </children>

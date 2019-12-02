@@ -1,0 +1,30 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+.table{
+    -fx-background-color: red;
+    
+}
+.table-row-cell{-fx-border-width:10 0 0 0; -fx-border-color:#f4f4f4;}
+.table-view .column-header,
+.table-view .column-header .filler,
+.table-view .column-header-background .filler{
+    -fx-background-color: white;
+}
+
+.list-cell{
+    -fx-padding: 0px;
+}
+
+.table-view .column-header .label{
+    -fx-padding: 15px;
+    -fx-background-color: white;
+    -fx-border-width: 0vh;  
+    -fx-border-color: lack;
+    
+}

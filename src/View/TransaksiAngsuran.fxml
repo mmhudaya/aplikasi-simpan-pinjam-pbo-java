@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
@@ -7,8 +10,216 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Pengurus.TransaksiAngsuranController">
-    <stylesheets>
-        <URL value="@/ViewStyle/transaksiangsuran.css"/>
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="635.0" prefWidth="970.0" style="-fx-background-color: transparent;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Pengurus.TransaksiAngsuranController">
+   <children>
+      <VBox prefHeight="635.0" prefWidth="970.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="16.0">
+         <children>
+            <HBox prefHeight="59.0" prefWidth="573.0" spacing="12.0">
+               <children>
+                  <VBox prefHeight="59.0" prefWidth="385.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="203.0" text="ID Peminjaman">
+                           <font>
+                              <Font name="Arial Bold" size="9.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <JFXPasswordField fx:id="tpfPassword" prefHeight="39.0" prefWidth="540.0" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" />
+                     </children>
+                  </VBox>
+                  <Label text="cek" />
+               </children>
+               <VBox.margin>
+                  <Insets top="12.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="59.0" prefWidth="573.0" spacing="12.0">
+               <children>
+                  <VBox prefHeight="59.0" prefWidth="738.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="203.0" text="NIK Anggota">
+                           <font>
+                              <Font name="Arial Bold" size="9.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <JFXTextField fx:id="tfEmail" focusColor="WHITE" prefHeight="37.0" prefWidth="505.0" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" unFocusColor="#4c4c4c00">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="59.0" prefWidth="738.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="203.0" text="Nama Nggota">
+                           <font>
+                              <Font name="Arial Bold" size="9.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <JFXTextField fx:id="tfNoTelp" focusColor="WHITE" prefHeight="37.0" prefWidth="505.0" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" unFocusColor="#4c4c4c00">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                  </VBox>
+                  <Pane prefHeight="59.0" prefWidth="740.0" />
+               </children>
+               <VBox.margin>
+                  <Insets top="12.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="59.0" prefWidth="573.0">
+               <children>
+                  <VBox prefHeight="64.0" prefWidth="592.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="203.0" text="Jumlah Pengambllan">
+                           <font>
+                              <Font name="Arial Bold" size="9.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="37.0" prefWidth="99.0" text="Rp" textFill="#c5bcbc">
+                                 <font>
+                                    <Font name="Arial Bold" size="25.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tfNik" focusColor="WHITE" prefHeight="37.0" prefWidth="498.0" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" unFocusColor="#4c4c4c00">
+                                 <font>
+                                    <Font name="Arial" size="12.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets top="12.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="59.0" prefWidth="573.0" spacing="12.0">
+               <children>
+                  <VBox prefHeight="59.0" prefWidth="656.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="203.0" text="Tenor">
+                           <font>
+                              <Font name="Arial Bold" size="9.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <JFXTextField fx:id="tfEmail1" focusColor="WHITE" prefHeight="37.0" prefWidth="133.0" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" unFocusColor="#4c4c4c00">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="59.0" prefWidth="830.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="203.0" text="Tipe Bunga">
+                           <font>
+                              <Font name="Arial Bold" size="9.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <JFXTextField fx:id="tfNoTelp1" focusColor="WHITE" prefHeight="37.0" prefWidth="0.0" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" unFocusColor="#4c4c4c00">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                  </VBox>
+                  <Pane prefHeight="59.0" prefWidth="744.0" />
+               </children>
+               <VBox.margin>
+                  <Insets top="12.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="56.0" prefWidth="898.0">
+               <children>
+                  <Label prefHeight="46.0" prefWidth="314.0" text="Angsuran Ke-1">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="32.0" />
+                     </HBox.margin>
+                  </Label>
+                  <VBox prefHeight="381.0" prefWidth="723.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="203.0" text="Jumlah Pengambllan">
+                           <font>
+                              <Font name="Arial Bold" size="9.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox prefHeight="59.0" prefWidth="386.0">
+                           <children>
+                              <Label prefHeight="37.0" prefWidth="41.0" text="Rp" textFill="#c5bcbc">
+                                 <font>
+                                    <Font name="Arial Bold" size="25.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tfNik1" focusColor="WHITE" prefHeight="37.0" prefWidth="288.0" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" unFocusColor="#4c4c4c00">
+                                 <font>
+                                    <Font name="Arial" size="12.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets top="12.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="12.0" />
+               </VBox.margin>
+            </HBox>
+            <JFXButton disable="true" prefHeight="25.0" prefWidth="115.0" styleClass="btn" stylesheets="@../ViewStyle/generic.css" text="Submit">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="16.0" top="32.0" />
+               </VBox.margin>
+            </JFXButton>
+         </children>
+         <padding>
+            <Insets left="8.0" />
+         </padding>
+      </VBox>
+   </children>
+   <stylesheets>
+      <URL value="@/ViewStyle/transaksipengambilan.css" />
+   </stylesheets>
 </AnchorPane>
