@@ -8,8 +8,12 @@ package Model;
 import Constant.Constant;
 import Core.Database.CoreDatabaseTable;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -29,63 +33,39 @@ public class Anggota extends CoreDatabaseTable<Anggota>{
     private String noTelp;
     private String password;
     private Timestamp tglAktif;
-    private List<Pinjaman> listPinjaman = new ArrayList<Pinjaman>();
-    private List<Simpanan> listSimpanan = new ArrayList<Simpanan>();
-    private List<Penarikan> listPenarikan = new ArrayList<Penarikan>();
     
     //Distinct
     private boolean isPengurus;
-
+    private boolean isAktif;
+    
     public Anggota() {
         super("anggota", Constant.SIMPAN_PINJAM_TABLE.get("anggota"));
-    }
-    
-    public List<Pinjaman> getListPinjaman() {
-        return listPinjaman;
-    }
-
-    public void setListPinjaman(List<Pinjaman> listPinjaman) {
-        this.listPinjaman = listPinjaman;
-    }
-
-    public List<Simpanan> getListSimpanan() {
-        return listSimpanan;
-    }
-
-    public void setListSimpanan(List<Simpanan> listSimpanan) {
-        this.listSimpanan = listSimpanan;
-    }
-
-    public List<Penarikan> getListPenarikan() {
-        return listPenarikan;
-    }
-
-    public void setListPenarikan(List<Penarikan> listPenarikan) {
-        this.listPenarikan = listPenarikan;
     }
 
     @Override
     public Anggota map(Object[] values) {
-        this.setNik((String) values[0]);
-        this.setNama((String) values[1]);
-        this.setTtl((String) values[2]);
-        this.setJenisKelamin((String) values[3]);
-        this.setGolonganDarah((String) values[4]);
-        this.setAgama((String) values[5]);
-        this.setPekerjaan((String) values[6]);
-        this.setAlamat((String) values[7]);
-        this.setEmail((String) values[8]);
-        this.setNoTelp((String) values[9]);
-        this.setPassword((String) values[10]);
-        System.out.println(values[11]);
-        this.setIsPengurus((Integer) values[11] == 1 ? true : false);
+        Anggota anggota = new Anggota();
+        this.setNik(values[0] != null ? (String) values[0] : null);
+        this.setNama(values[1] != null ? (String) values[1] : null);
+        this.setTtl(values[2] != null ? (String) values[2] : null);
+        this.setJenisKelamin(values[3] != null ? (String) values[3] : null);
+        this.setGolonganDarah(values[4] != null ? (String) values[4] : null);
+        this.setAgama(values[5] != null ? (String) values[5] : null);
+        this.setPekerjaan(values[6] != null ? (String) values[6] : null);
+        this.setAlamat(values[7] != null ? (String) values[7] : null);
+        this.setEmail(values[8] != null ? (String) values[8] : null);
+        this.setNoTelp(values[9] != null ? (String) values[9] : null);
+        this.setPassword(values[10] != null ? (String) values[10] : null);
+        System.out.println(Arrays.toString(values));
+        this.setIsPengurus(values[11] != null ? (Integer) values[11] == 1 ? true : false : false );
+        this.setIsAktif(values[12] != null ? (Integer) values[12] == 1 ? true : false : false);
         
         return this;
     }
     
     @Override
     public HashMap<String, Object> getValuesFromModelAttribute() {
-        HashMap<String, Object> values = new HashMap<>();
+        LinkedHashMap<String, Object> values = new LinkedHashMap<>();
         values.put("nik", this.getNik());
         values.put("nama", this.getNama());
         values.put("ttl", this.getTtl());
@@ -105,18 +85,87 @@ public class Anggota extends CoreDatabaseTable<Anggota>{
     
     
     public boolean login(){
-        HashMap<String, Object> whereValues = new HashMap<>();
+        LinkedHashMap<String, Object> whereValues = new LinkedHashMap<>();
         whereValues.put("nik", this.getNik());
         whereValues.put("password", this.getPassword());
-        whereValues.put("is_aktif", true);
+//        whereValues.put("is_aktif", true);
         
         Object[] dataAnggota = this.getOneByFilter(whereValues);
-        if(dataAnggota[0] != null){
+        if(dataAnggota != null && dataAnggota[0] != null){
             this.map(dataAnggota);
             return true;
         }
         
         return false;
+    }
+    
+    //Transaksi
+    public double getTotalPinjaman(){
+        return new Pinjaman().getTotalTransaksiPribadi(this.getNik());
+    }
+    public double getTotalSimpanan(){
+        return new Simpanan().getTotalTransaksiPribadi(this.getNik());
+    }
+    public double getTotalSimpanan(int tipeSimpanan){
+        Object[] res = super.customReadOneQuery("SELECT SUM(`jumlah_uang`) FROM `"+this.tableName+"` WHERE anggota_nik='"+nik+"' AND tipe_simpanan_id="+tipeSimpanan, 1);
+        if(res != null && res[0] != null){
+            return (Double) res[0];
+        }
+        return 0.0;
+    }
+    
+    public List<Integer> getKelengkapanBerkas(){
+        List<Object[]> listRes = super.customReadQuery("SELECT * FROM `berkas_anggota` WHERE `anggota_nik`="+this.getNik(), 3);
+        List<Integer> listKelengkpan = new ArrayList<>();
+        for(Object[] res : listRes){
+            listKelengkpan.add(Integer.valueOf(String.valueOf(res[1])));
+        }
+        
+        return listKelengkpan;
+    }
+    
+    public double getTotalAngsuran(){
+        return new Angsuran().getTotalAngsuran(this.getNik());
+    }
+    public double getTotalPenarikan(){
+        return new Penarikan().getTotalTransaksiPribadi(this.getNik());
+    }
+    
+    public boolean pengajuanPeminjaman(Pinjaman pinjaman){
+        pinjaman.setTglTransaksi(new Timestamp(new Date().getTime()));
+        pinjaman.setIsDiterima(false);
+        pinjaman.setIsLunas(false);
+        pinjaman.setPengurus(null);
+        pinjaman.setId(pinjaman.getId(this.getNama(), "Pinjaman"));
+        
+        return pinjaman.ajukan();
+    }
+    
+    public boolean menjadiPengurus(){
+        LinkedHashMap<String, Object> values = new LinkedHashMap<>();
+        values.put("is_pengurus", true);
+        HashMap<String, Object> whereValues = new HashMap<>();
+        whereValues.put("nik", this.getNik());
+        
+        return super.update(values, whereValues);
+    }
+    
+    public boolean nonAktifasi(){
+        LinkedHashMap<String, Object> values = new LinkedHashMap<>();
+        values.put("is_aktif", false);
+        values.put("is_stop", true);
+        HashMap<String, Object> whereValues = new HashMap<>();
+        whereValues.put("nik", this.getNik());
+        
+        return super.update(values, whereValues);
+    }
+    
+    public boolean isAktifDanTerdaftar(String nik){
+        LinkedHashMap<String, Object> whereValues = new LinkedHashMap<>();
+        whereValues.put("nik", nik);
+        whereValues.put("is_aktif", true);
+        Object[] res = super.getOneByFilter(whereValues);
+        return res != null && res.length > 0;
     }
     
     //Getter setter
@@ -223,5 +272,14 @@ public class Anggota extends CoreDatabaseTable<Anggota>{
     public void setIsPengurus(boolean isPengurus) {
         this.isPengurus = isPengurus;
     }
+
+    public boolean isIsAktif() {
+        return isAktif;
+    }
+
+    public void setIsAktif(boolean isAktif) {
+        this.isAktif = isAktif;
+    }
+
     
 }

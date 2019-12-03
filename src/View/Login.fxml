@@ -42,7 +42,7 @@
             </HBox>
             <BorderPane prefHeight="478.0" prefWidth="790.0">
                <center>
-                  <VBox prefHeight="510.0" prefWidth="790.0" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="405.0" prefWidth="467.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label fx:id="titleTest" text="Masuk ke Aplikasi">
                            <font>
@@ -58,7 +58,7 @@
                            <font>
                               <Font name="Arial Bold" size="9.0" />
                            </font></Label>
-                        <JFXTextField focusColor="WHITE" fx:id="tfNik" prefHeight="22.0" prefWidth="790.0" promptText="Masukan NIK disini" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" unFocusColor="#4c4c4c00">
+                        <JFXTextField fx:id="tfNik" focusColor="WHITE" prefHeight="22.0" prefWidth="790.0" promptText="Masukan NIK disini" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" unFocusColor="#4c4c4c00">
                            <VBox.margin>
                               <Insets top="4.0" />
                            </VBox.margin>
@@ -78,13 +78,23 @@
                               <Insets top="4.0" />
                            </VBox.margin>
                         </JFXPasswordField>
-                        <JFXButton onAction="#onBtnMasukClick" prefHeight="25.0" prefWidth="115.0" styleClass="btn" stylesheets="@../ViewStyle/generic.css" text="Masuk">
+                        <HBox prefHeight="28.0" prefWidth="376.0">
+                           <children>
+                              <JFXButton onAction="#onBtnMasukClick" prefHeight="25.0" prefWidth="115.0" styleClass="btn" stylesheets="@../ViewStyle/generic.css" text="Masuk">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                              </JFXButton>
+                              <Label fx:id="errorLabel" prefHeight="35.0" prefWidth="306.0" textFill="#cda3a3">
+                                 <HBox.margin>
+                                    <Insets left="16.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
                            <VBox.margin>
                               <Insets top="32.0" />
                            </VBox.margin>
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font></JFXButton>
+                        </HBox>
                      </children>
                      <BorderPane.margin>
                         <Insets />
@@ -95,7 +105,7 @@
                   <AnchorPane prefHeight="478.0" prefWidth="104.0" BorderPane.alignment="CENTER" />
                </left>
                <right>
-                  <Pane prefHeight="377.0" prefWidth="310.0" BorderPane.alignment="CENTER" />
+                  <Pane prefHeight="405.0" prefWidth="252.0" BorderPane.alignment="CENTER" />
                </right>
                <top>
                   <AnchorPane prefHeight="73.0" prefWidth="790.0" BorderPane.alignment="CENTER" />

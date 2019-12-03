@@ -20,8 +20,8 @@ public final class Constant {
         
         //Simpan Pinjam Angsuran Pengambilan
         put("simpan", new String[]{"id", "anggota_nik", "tipe_simpanan_id", "tgl_transaksi", "jumlah_uang", "pengurus_nik"});
-        put("pinjam", new String[]{"id", "anggota_nik", "tipe_pinjaman_id", "tipe_bunga_id", "suku_bunga", "tenor", "is_diterima", "is_lunas", "tgl_transaksi", "jumlah_uang", "pengurus_nik"});
-        put("angsuran", new String[]{"id", "pinjmam_id", "tgl_transaksi", "jumlah_uang", "pengurus_nik"});
+        put("pinjam", new String[]{"id", "anggota_nik",  "tipe_bunga_id", "suku_bunga", "tenor", "is_diterima", "is_lunas", "tgl_transaksi", "jumlah_uang", "pengurus_nik"});
+        put("angsuran", new String[]{"id", "pinjmam_id", "tgl_transaksi", "jumlah_uang", "jumlah_bunga", "pengurus_nik"});
         put("ambil", new String[]{"id", "anggota_nik", "tgl_transaksi", "jumlah_uang", "pengurus_nik"});
         
         //Master Data
@@ -32,20 +32,29 @@ public final class Constant {
     
     public static final HashMap<Integer, String> BERKAS = new HashMap<Integer, String>(){{
         put(1, "Foto Copy KTP");
-        put(1, "Kartu Keluarga");
-        put(1, "Slip Gaji");
-        put(1, "Tagihan Listrik");
+        put(2, "Kartu Keluarga");
+        put(3, "Slip Gaji");
+        put(4, "Tagihan Listrik");
     }};
     
-    public static final HashMap<Integer, String> TIPE_BUNGA = new HashMap<Integer, String>(){{
-        put(1, "Menurun");
-        put(1, "Menurun Efektif");
+    public static final HashMap<String, Integer> TIPE_BUNGA = new HashMap<String, Integer>(){{
+        put("Menurun", 1);
+        put("Menurun Efektif", 2);
     }};
     
-    public static final HashMap<Integer, String> TIPE_SIMPANAN = new HashMap<Integer, String>(){{
-        put(1, "Wajib");
-        put(1, "Pokok");
-        put(1, "Sukarela");
+    public static final HashMap<String, Integer> TENOR = new HashMap<String, Integer>(){{
+        put("6 Bulan", 6);
+        put("12 Bulan", 12);
+        put("18 Bulan", 18);
+        put("24 Bulan", 24);
+        put("36 Bulan", 36);
+        put("48 Bulan", 48);
+    }};
+    
+    public static final HashMap<String, Integer> TIPE_SIMPANAN = new HashMap<String, Integer>(){{
+        put("Wajib", 1);
+        put("Pokok", 2);
+        put("Sukarela", 3);
     }};
     
     public static final HashMap<Integer, String> AGAMA = new HashMap<Integer, String>(){{
@@ -55,4 +64,7 @@ public final class Constant {
         put(4, "Hindu");
         put(5, "Budha");
     }};
+    
+    public static final Integer MAX_PEMINJAMAN = 100000000;
+    public static final Integer MIN_PEMINJAMAN = 100000;
 }

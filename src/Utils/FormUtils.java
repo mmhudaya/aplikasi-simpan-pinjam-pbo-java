@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
@@ -38,6 +39,15 @@ public abstract class FormUtils {
         }
 
         Matcher matcher = pattern.matcher(number);
+        return matcher.matches();
+        
+    }
+    
+    public static boolean isValidDecimal(String text){
+        Pattern pattern;
+        pattern = Pattern.compile("^[0-9]*(\\.[0-9]{1,4})?$");
+
+        Matcher matcher = pattern.matcher(text);
         return matcher.matches();
         
     }
@@ -91,15 +101,15 @@ public abstract class FormUtils {
         ObservableList<String> styleClass = textField.getStyleClass();
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             if(!FormUtils.isValidEmail(newValue)){
-                currentPage.onChangeAnyFormValue();
                 textField.setAccessibleHelp("error");
+                currentPage.onChangeAnyFormValue();
                 if(!styleClass.contains("form-text-error")){
                     if(styleClass.indexOf("form-text-valid") != -1) styleClass.remove(styleClass.indexOf("form-text-valid"));
                     styleClass.add("form-text-error");
                 }
             }else{
-                currentPage.onChangeAnyFormValue();
                 textField.setAccessibleHelp("valid");
+                currentPage.onChangeAnyFormValue();
                 styleClass.clear();
                 styleClass.addAll("form-text", "form-text-valid");
             }
@@ -110,15 +120,15 @@ public abstract class FormUtils {
         ObservableList<String> styleClass = textField.getStyleClass();
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             if(!FormUtils.isValidNumber(newValue, minLength, maxLength)){
-                currentPage.onChangeAnyFormValue();
                 textField.setAccessibleHelp("error");
+                currentPage.onChangeAnyFormValue();
                 if(!styleClass.contains("form-text-error")){
                     if(styleClass.indexOf("form-text-valid") != -1) styleClass.remove(styleClass.indexOf("form-text-valid"));
                     styleClass.add("form-text-error");
                 }
             }else{
-                currentPage.onChangeAnyFormValue();
                 textField.setAccessibleHelp("valid");
+                currentPage.onChangeAnyFormValue();
                 styleClass.clear();
                 styleClass.addAll("form-text", "form-text-valid");
             }
@@ -130,16 +140,16 @@ public abstract class FormUtils {
         ObservableList<String> styleClass = textField.getStyleClass();
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             if(!FormUtils.isValidNameForm(newValue, minLength, maxLength)){
-                currentPage.onChangeAnyFormValue();
                 textField.setAccessibleHelp("error");
+                currentPage.onChangeAnyFormValue();
                 if(!styleClass.contains("form-text-error")){
                     if(styleClass.indexOf("form-text-valid") != -1) styleClass.remove(styleClass.indexOf("form-text-valid"));
                     styleClass.add("form-text-error");
                 }
             }else{
+                textField.setAccessibleHelp("valid");
                 currentPage.onChangeAnyFormValue();
                 styleClass.clear();
-                textField.setAccessibleHelp("valid");
                 styleClass.addAll("form-text", "form-text-valid");
             }
         });
@@ -150,16 +160,16 @@ public abstract class FormUtils {
         ObservableList<String> styleClass = cb.getStyleClass();
         cb.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue == null){
-                currentPage.onChangeAnyFormValue();
                 cb.setAccessibleHelp("error");
+                currentPage.onChangeAnyFormValue();
                 if(!styleClass.contains("box-combo-error")){
                     if(styleClass.indexOf("box-combo-valid") != -1) styleClass.remove(styleClass.indexOf("box-combo-valid"));
                     styleClass.add("box-combo-error");
                 }
             }else{
+                cb.setAccessibleHelp("valid");
                 currentPage.onChangeAnyFormValue();
                 styleClass.clear();
-                cb.setAccessibleHelp("valid");
                 styleClass.addAll("box-combo", "box-combo-valid");
             }
         });
@@ -170,19 +180,85 @@ public abstract class FormUtils {
         ObservableList<String> styleClass = dp.getStyleClass();
         dp.valueProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue == null){
-                currentPage.onChangeAnyFormValue();
                 dp.setAccessibleHelp("error");
+                currentPage.onChangeAnyFormValue();
                 if(!styleClass.contains("custom-date-picker-error")){
                     if(styleClass.indexOf("custom-date-picker-valid") != -1) styleClass.remove(styleClass.indexOf("custom-date-picker-valid"));
                     styleClass.add("custom-date-picker-error");
                 }
             }else{
-                currentPage.onChangeAnyFormValue();
                 dp.setAccessibleHelp("valid");
+                currentPage.onChangeAnyFormValue();
                 if(styleClass.indexOf("custom-date-picker-error") != -1) styleClass.remove(styleClass.indexOf("custom-date-picker-error"));
                 styleClass.addAll("custom-date-picker", "custom-date-picker-valid");
             }
         });
+    }
+    
+    public static void addNumberMinMaxHandler(CorePage currentPage, TextField tf, int min, int max){
+        ObservableList<String> styleClass = tf.getStyleClass();
+        tf.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!FormUtils.isValidNumber(newValue, 1, 100) || !(Integer.valueOf(newValue) >= min && Integer.valueOf(newValue) <= max)){
+                tf.setAccessibleHelp("error");
+                currentPage.onChangeAnyFormValue();
+                if(!styleClass.contains("form-text-error")){
+                    if(styleClass.indexOf("form-text-valid") != -1) styleClass.remove(styleClass.indexOf("form-text-valid"));
+                    styleClass.add("form-text-error");
+                }
+            }else{
+                tf.setAccessibleHelp("valid");
+                currentPage.onChangeAnyFormValue();
+                styleClass.clear();
+                styleClass.addAll("form-text", "form-text-valid");
+            }
+        });
+    }
+    
+    public static void addDecimalMinMaxHandler(CorePage currentPage, TextField tf, double min, double max){
+        ObservableList<String> styleClass = tf.getStyleClass();
+        tf.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.isEmpty() || !FormUtils.isValidDecimal(newValue) || !(Double.valueOf(newValue) >= min && Double.valueOf(newValue) <= max)){
+                tf.setAccessibleHelp("error");
+                currentPage.onChangeAnyFormValue();
+                if(!styleClass.contains("form-text-error")){
+                    if(styleClass.indexOf("form-text-valid") != -1) styleClass.remove(styleClass.indexOf("form-text-valid"));
+                    styleClass.add("form-text-error");
+                }
+            }else{
+                tf.setAccessibleHelp("valid");
+                currentPage.onChangeAnyFormValue();
+                styleClass.clear();
+                styleClass.addAll("form-text", "form-text-valid");
+            }
+        });
+    }
+    
+    public static void showLabelMessage(Label label, String text, boolean isError){
+        if(!isError){
+            label.setStyle("-fx-text-fill: #AADFAF");
+            label.setText(text);
+        }else{
+            label.setStyle("-fx-text-fill: #E47777");
+            label.setText(text);
+        }
+    }
+    
+    public static void textFieldPristine(TextField tf){
+        ObservableList<String> styleClass = tf.getStyleClass();
+        styleClass.clear();
+        styleClass.addAll("form-text");
+    }
+    
+    public static void comboBoxPristine(ComboBox cb){
+        ObservableList<String> styleClass = cb.getStyleClass();
+        styleClass.clear();
+        styleClass.addAll("form-text");
+    }
+    
+    public static void datePickerPristine(DatePicker dp){
+        ObservableList<String> styleClass = dp.getStyleClass();
+        styleClass.clear();
+        styleClass.addAll("form-text");
     }
     
     public static boolean formTextFieldIsValid(TextField tf){

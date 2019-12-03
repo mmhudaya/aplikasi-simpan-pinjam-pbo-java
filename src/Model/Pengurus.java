@@ -6,6 +6,9 @@
 package Model;
 
 import Constant.Constant;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -15,40 +18,86 @@ import java.util.List;
 public class Pengurus extends Anggota {
     
     //Aktifasi
-    public boolean updateKelengkapanBerkas(String nikPendaftar, String[] daftarBerkas){
-        return false;
+    public boolean updateKelengkapanBerkas(String nikPendaftar, List<Integer> daftarBerkas){
+        boolean success = true;
+        for(int berkasId: daftarBerkas){
+            success = super.customCUDQuery("INSERT INTO `berkas_anggota`(`anggota_nik`, `berkas_id`, `tgl_diberikan`) VALUES('"+nikPendaftar+"', "+berkasId+", NOW()) ");
+            if(!success){
+                return false;
+            }
+        }
+       return success;
     }
     
     public boolean aktifasiPendaftar(String nikPendaftar){
-        //TODO Aktifasi anggota
-        return false;
+        Pendaftar pendaftar = new Pendaftar();
+        pendaftar.setNik(nikPendaftar);
+        return pendaftar.aktifasi();
     }
     
     //Pengangkatan
     public boolean angkatAnggotaMenjadiPengurus(String nikAnggota){
-        return false;
+        Anggota anggota = new Anggota();
+        anggota.setNik(nikAnggota);
+        
+        return anggota.menjadiPengurus();
     }
     
     //Transaksi
-    public boolean transaksiSimpanan(String nikAnggota, Simpanan simpanan){
-        return false;
+    public Double getTotalSimpananKoperasi(){
+        return new Simpanan().getTotalTransaksi();
+    }
+    public Double getTotalPinjamanKoperasi(){
+        return new Pinjaman().getTotalTransaksi();
+    }
+    public Double getTotalAngsuranKoperasi(){
+        return new Angsuran().getTotalTransaksi();
+    }
+    public Double getTotalPenarikanKoperasi(){
+        return new Penarikan().getTotalTransaksi();
     }
     
-    public boolean transaksiPinjaman(String nikAnggota, Pinjaman pinjaman){
-        return false;
+    public boolean transaksi(Simpanan simpanan){
+        Anggota anggota = new Anggota();
+        anggota.selectOne("nik", simpanan.getNikAnggota());
+        simpanan.setId(simpanan.getId(anggota.getNama(), "Simpanan"));
+        simpanan.setPengurus(this);
+        simpanan.setTglTransaksi(new Timestamp(new Date().getTime()));
+        return simpanan.save(simpanan.getValuesFromModelAttribute());
     }
     
-    public boolean transaksiAngsuran(String nikAnggota, String idPinjaman, Angsuran angsuran){
-        return false;
+    public boolean transaksi(Pinjaman pinjaman){
+        Anggota anggota = new Anggota();
+        anggota.selectOne("nik", pinjaman.getNikAnggota());
+        pinjaman.setId(pinjaman.getId(anggota.getNama(), "Pinjaman"));
+        pinjaman.setPengurus(this);
+        pinjaman.setTglTransaksi(new Timestamp(new Date().getTime()));
+        return pinjaman.save(pinjaman.getValuesFromModelAttribute());
     }
     
-    public boolean transaksiPenarikan(String nikAnggota, Penarikan penarikan){
-        return false;
+    
+    public boolean transaksi(Angsuran angsuran){
+        Anggota anggota = new Anggota();
+        anggota.selectOne("nik", angsuran.getNikAnggota());
+        angsuran.setId(angsuran.getId(anggota.getNama(), "Angsuran"));
+        angsuran.setPengurus(this);
+        angsuran.setTglTransaksi(new Timestamp(new Date().getTime()));
+        return angsuran.save(angsuran.getValuesFromModelAttribute());
+    }
+    
+    public boolean transaksi(Penarikan penarikan){
+        Anggota anggota = new Anggota();
+        anggota.selectOne("nik", penarikan.getNikAnggota());
+        penarikan.setId(penarikan.getId(anggota.getNama(), "Tarik"));
+        penarikan.setPengurus(this);
+        penarikan.setTglTransaksi(new Timestamp(new Date().getTime()));
+        return penarikan.save(penarikan.getValuesFromModelAttribute());
     }
     
     //Deaktifasi
-    public boolean deaktifasiAnggota(String nikAnggota){
-        //TODO Aktifasi anggota
-        return false;
+    public boolean nonAktifasiAnggota(String nikAnggota){
+        Anggota anggota = new Anggota();
+        anggota.setNik(nikAnggota);
+        return anggota.nonAktifasi();
     }
 }

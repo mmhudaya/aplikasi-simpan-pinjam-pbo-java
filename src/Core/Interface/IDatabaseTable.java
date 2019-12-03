@@ -21,7 +21,7 @@ public interface IDatabaseTable {
     List getAllByFilter(HashMap<String, Object> whereValue);
     Object[] get(String key, Object value);
     
-    void customCUDQuery(String query);
+    boolean customCUDQuery(String query);
     List<Object[]> customReadQuery(String query, int columnLength);
     Object[] customReadOneQuery(String query, int columnLength);
 }

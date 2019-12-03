@@ -12,6 +12,7 @@ import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -19,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  *
@@ -34,8 +36,21 @@ public class MainController extends CoreScene implements Initializable {
     @FXML
     private Pane pageHeaderPane; //Width: 970, Height: 635
     @FXML
-    private Label pageName, pageSubSection;
+    private Label pageName, pageSubSection, nameLabel, loggedInAsLabel;
     
+    @FXML
+    private JFXButton exitBtn;
+    @FXML
+    private void onClickExitBtn(Event ev){
+        Stage stage = (Stage) this.exitBtn.getScene().getWindow();
+        stage.close();
+    }
+    
+    @FXML
+    private void onLogoutBtnClick(Event ev){
+        Main.setUserLoggedIn(false);
+        super.changeScene("OnBoarding");
+    }
     
     @FXML
     private void onSidebarMenuClick(ActionEvent ev){
@@ -75,7 +90,7 @@ public class MainController extends CoreScene implements Initializable {
             this.addSidebarMenu("Pendaftar", "LihatPendaftar");
             this.addSidebarMenu("Transaksi Saya", "LihatDaftarTransaksi");
             this.addSidebarMenu("Pengajuan Pinjaman", "PengajuanPeminjaman");
-            this.addSidebarMenu("Nonaktifasi Anggota", "NonAktifasiAnggota");
+//            this.addSidebarMenu("Nonaktifasi Anggota", "NonAktifasiAnggota");
         }
         
             this.getSidebarMenuButton("Dashboard").fire();
@@ -109,11 +124,20 @@ public class MainController extends CoreScene implements Initializable {
 
     @Override
     public void onShown() {
+        if(Main.anggota != null){
+            this.setLoggedInNameAnRole(Main.anggota.getNama(), Main.loginSebagai());
+        }else if(Main.pengurus != null){
+            this.setLoggedInNameAnRole(Main.pengurus.getNama(), Main.loginSebagai());
+        }
+    }
+    
+    private void setLoggedInNameAnRole(String name, String role){
+        this.nameLabel.setText(name);
+        this.loggedInAsLabel.setText("Anda masuk sebagai "+role);
     }
 
     @Override
     public void onBeforeShown() {
         super.setDraggedWindows();
     }
-    
 }

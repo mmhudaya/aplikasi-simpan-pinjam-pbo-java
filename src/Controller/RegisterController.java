@@ -17,6 +17,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -24,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -59,25 +61,28 @@ public class RegisterController extends CorePage implements Initializable {
         pendaftar.setPekerjaan(tfPekerjaan.getText());
         pendaftar.setEmail(tfEmail.getText());
         pendaftar.setNoTelp(tfNoTelp.getText());
-        pendaftar.setTtl(tfTempatLahir.getText() + dpTanggalLahir.getValue().format(DateTimeFormatter.ISO_DATE));
+        pendaftar.setTtl(tfTempatLahir.getText() +", "+ dpTanggalLahir.getValue().format(DateTimeFormatter.ISO_DATE));
         pendaftar.setPassword(tpfPassword.getText());
         pendaftar.setJenisKelamin(cbJenisKelamin.getValue());
         pendaftar.setGolonganDarah(cbGolonganDarah.getValue());
         pendaftar.setAgama(cbAgama.getValue());
         pendaftar.setPassword(tpfPassword.getText());
         
+        this.btnRegister.setDisable(true);
+        
         if(pendaftar.registrasi()){
             //berhasil registrasi
             this.errorLabel.setStyle("-fx-text-fill: #AADFAF");
             this.errorLabel.setText("Terima Kasih telah mendaftar :)");
-            try{
-                Thread.sleep(2000);
+            PauseTransition pause = new PauseTransition(Duration.seconds(2));
+            pause.setOnFinished(event ->{
                 super.getParentController().changePage("Login");
-            }catch(Exception ex){
-                ex.printStackTrace();
-            }
+                pause.stop();
+            });
+            pause.play();
         }else{
             //gagal registrasi
+            this.btnRegister.setDisable(false);
             this.errorLabel.setStyle("-fx-text-fill: ##E47777");
             this.errorLabel.setText("NIK telah terpakai");
         }
@@ -148,7 +153,6 @@ public class RegisterController extends CorePage implements Initializable {
         
         //DatePicker
         valid = valid && FormUtils.formDatePickerIsValid(dpTanggalLahir);
-        
         this.btnRegister.setDisable(!valid);
     }
     

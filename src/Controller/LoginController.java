@@ -17,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 /**
  * FXML Controller class
  *
@@ -36,6 +37,8 @@ public class LoginController extends CorePage implements Initializable {
     private JFXTextField tfNik;
     @FXML
     private JFXPasswordField tpfPassword;
+    @FXML
+    private Label errorLabel;
     
     /**
      * Initializes the controller class.
@@ -48,25 +51,30 @@ public class LoginController extends CorePage implements Initializable {
     
     @FXML
     private void onBtnMasukClick(ActionEvent ev){
-        Anggota anggota = new Anggota();
+        Anggota anggota = new Pengurus();
         anggota.setNik(tfNik.getText());
         anggota.setPassword(tpfPassword.getText());
         
         if(anggota.login()){
-            if(anggota.isPengurus()){
-            System.out.println("pengurus");
-                Anggota anggotaAsPengurus = new Pengurus();
-                Pengurus pengurus = (Pengurus) anggotaAsPengurus;
-                Main.setPengurus(pengurus);
+            if(anggota.isIsAktif()){
+                if(anggota.isPengurus()){
+                    System.out.println("pengurus");
+//                    Anggota anggotaAsPengurus = new Pengurus();
+                    Pengurus pengurus = (Pengurus) anggota;
+                    Main.setPengurus(pengurus);
+                }else{
+                    System.out.println("anggota");
+                    Main.setAnggota(anggota);
+                }
+
+                Main.setUserLoggedIn(true);
+                super.getParentController().changeScene("MainView");
             }else{
-                System.out.println("anggota");
-                Main.setAnggota(anggota);
+                this.errorLabel.setText("Mohon maaf, NIK anda belum diaktifasi.");
             }
-                
-            Main.setUserLoggedIn(true);
-            super.getParentController().changeScene("MainView");
         }else{
             //TODO Show handle salah password
+            this.errorLabel.setText("Silahkan memasukan NIK dan password dengan benar.");
         }
     }
     

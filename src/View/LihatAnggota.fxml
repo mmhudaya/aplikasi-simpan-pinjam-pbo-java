@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
@@ -7,8 +10,32 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Pengurus.LihatAnggotaController">
-    <stylesheets>
-        <URL value="@/ViewStyle/lihatanggota.css"/>
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="635.0" prefWidth="970.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Pengurus.LihatAnggotaController">
+   <children>
+      <VBox prefHeight="635.0" prefWidth="970.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="553.0" prefWidth="930.0">
+               <children>
+                  <TableView fx:id="anggotaTable" prefHeight="592.0" prefWidth="914.0">
+                     <columns>
+                        <TableColumn fx:id="nik" editable="false" prefWidth="141.0" text="NIK" />
+                        <TableColumn fx:id="nama" editable="false" prefWidth="202.0" text="Nama" />
+                        <TableColumn fx:id="ttl" editable="false" prefWidth="210.0" text="Tempat, Tanggal Lahir" />
+                        <TableColumn fx:id="jenisKelamin" editable="false" prefWidth="202.0" text="Jenis Kelamin" />
+                        <TableColumn fx:id="golonganDarah" editable="false" prefWidth="158.0" text="Golongan Darah" />
+                        <TableColumn fx:id="agama" editable="false" prefWidth="158.0" text="Agama" />
+                        <TableColumn fx:id="pekerjaan" editable="false" prefWidth="158.0" text="Pekerjaan" />
+                        <TableColumn fx:id="email" editable="false" prefWidth="158.0" text="Email" />
+                        <TableColumn fx:id="noTelp" editable="false" prefWidth="158.0" text="noTelp" />
+                        <TableColumn fx:id="tglAktif" editable="false" prefWidth="158.0" text="tglAktif" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets left="40.0" top="16.0" />
+   </padding>
 </AnchorPane>

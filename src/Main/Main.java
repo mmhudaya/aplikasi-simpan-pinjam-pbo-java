@@ -56,6 +56,10 @@ public class Main extends Application {
         Main.anggota = anggota;
     }
     
+    public static String loginSebagai(){
+        return Main.anggota != null ? "Anggota" : Main.pengurus != null ? "Pengurus" : "unidentified";
+    }
+    
     public static void setUserLoggedIn(boolean loggedIn){
         Main.isLoggedIn = true;
         if(!loggedIn){

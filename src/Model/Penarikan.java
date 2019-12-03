@@ -6,9 +6,11 @@
 package Model;
 
 import Constant.Constant;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -17,7 +19,7 @@ import java.util.List;
  */
 public class Penarikan extends Transaksi<Penarikan> {
 
-    public Penarikan(Date tglTransaksi, Double jumlahUang, Pengurus pengurus) {
+    public Penarikan() {
         super("ambil", Constant.SIMPAN_PINJAM_TABLE.get("ambil"));
     }
     
@@ -40,14 +42,40 @@ public class Penarikan extends Transaksi<Penarikan> {
         
         return listPenarikan;
     }
+    
+    public double getJumlahMaksimalPenarikan(){
+        Anggota anggota = new Anggota();
+        anggota.setNik(this.getNikAnggota());
+        return (anggota.getTotalSimpanan() - anggota.getTotalPinjaman() - anggota.getTotalPenarikan());
+    }
+    
+    public boolean isDapatDilakukan(double jumlahPenarikan){
+        return jumlahPenarikan < (this.getJumlahMaksimalPenarikan());
+    }
 
     @Override
     public Penarikan map(Object[] values) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        super.setId(values[0] != null ? (String) values[0] : null);
+        super.setNikAnggota(values[1] != null ? (String) values[1] : null);
+        super.setTglTransaksi(values[2] != null ? (Timestamp) values[2] : null);
+        super.setJumlahUang(values[3] != null ? (Double) values[3] : null);
+        Pengurus pengurus = new Pengurus();
+        pengurus.setNik(values[4] != null ? (String) values[4] : null);
+        super.setPengurus(pengurus);
+        super.setTipeTransaksi("Tarik");
+        
+        return this;
     }
 
     @Override
     protected HashMap<String, Object> getValuesFromModelAttribute() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        LinkedHashMap<String, Object> values = new LinkedHashMap<>();
+        values.put("id", this.getId());
+        values.put("anggota_nik", this.getNikAnggota());
+        values.put("tgl_transaksi", this.getTglTransaksi());
+        values.put("jumlah_uang", this.getJumlahUang());
+        values.put("pengurus_nik", this.getPengurus() != null ? this.getPengurus().getNik() : "0000000000000000");
+        return values;
+        
     }
 }

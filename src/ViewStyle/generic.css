@@ -146,3 +146,14 @@
         -fx-control-inner-background: #F2FBF3; //Background
     }
 }
+
+.window-btn{
+    -fx-text-fill: #2D2D2D;
+    -fx-border-radius: 0;
+    -fx-background-color: transparent;
+}
+
+.window-btn:hover{
+    -fx-text-fill: white;
+    -fx-background-color: #E81123;
+}

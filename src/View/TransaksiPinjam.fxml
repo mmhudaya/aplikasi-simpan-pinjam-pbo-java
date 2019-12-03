@@ -16,7 +16,7 @@
          <children>
             <HBox prefHeight="59.0" prefWidth="573.0" spacing="12.0">
                <children>
-                  <VBox prefHeight="59.0" prefWidth="385.0">
+                  <VBox prefHeight="60.0" prefWidth="174.0">
                      <children>
                         <Label prefHeight="17.0" prefWidth="203.0" text="ID Peminjaman">
                            <font>
@@ -26,16 +26,19 @@
                               <Insets bottom="4.0" />
                            </VBox.margin>
                         </Label>
-                        <JFXPasswordField fx:id="tpfPassword" prefHeight="39.0" prefWidth="540.0" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" />
+                        <JFXTextField fx:id="tfIdPeminjaman" prefHeight="39.0" prefWidth="319.0" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" />
                      </children>
                   </VBox>
-                  <Label text="cek" />
-                  <JFXButton styleClass="btn-outline" stylesheets="@../ViewStyle/generic.css" text="ISI FORM MANUAL">
+                  <Label fx:id="idPeminjamanCheckLabel" prefHeight="59.0" prefWidth="174.0" text="✓" textFill="#10a13c">
+                     <font>
+                        <Font size="30.0" />
+                     </font></Label>
+                  <JFXButton fx:id="btnIsiForm" alignment="BOTTOM_CENTER" onMouseClicked="#onClickIsiFormBtn" prefHeight="37.0" prefWidth="139.0" styleClass="btn-outline" stylesheets="@../ViewStyle/generic.css" text="ISI FORM">
                      <font>
                         <Font name="System Bold" size="10.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="150.0" top="23.0" />
+                        <Insets top="22.0" />
                      </HBox.margin>
                   </JFXButton>
                </children>
@@ -45,7 +48,7 @@
             </HBox>
             <HBox prefHeight="59.0" prefWidth="573.0">
                <children>
-                  <VBox prefHeight="59.0" prefWidth="385.0">
+                  <VBox prefHeight="59.0" prefWidth="450.0">
                      <children>
                         <Label prefHeight="17.0" prefWidth="203.0" text="NIK Anggota">
                            <font>
@@ -55,13 +58,21 @@
                               <Insets bottom="4.0" />
                            </VBox.margin>
                         </Label>
-                        <JFXTextField fx:id="tfNik1" focusColor="WHITE" prefHeight="37.0" prefWidth="397.0" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" unFocusColor="#4c4c4c00">
+                        <JFXTextField fx:id="tfNikAnggota" focusColor="WHITE" prefHeight="37.0" prefWidth="479.0" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" unFocusColor="#4c4c4c00">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
                         </JFXTextField>
                      </children>
                   </VBox>
+                  <Label fx:id="nikCheckLabel" prefHeight="59.0" prefWidth="48.0" text="✓" textFill="#10a13c">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="16.0" />
+                     </HBox.margin>
+                  </Label>
                </children>
                <VBox.margin>
                   <Insets top="16.0" />
@@ -69,9 +80,9 @@
             </HBox>
             <HBox prefHeight="59.0" prefWidth="573.0">
                <children>
-                  <VBox prefHeight="52.0" prefWidth="386.0">
+                  <VBox prefHeight="52.0" prefWidth="514.0">
                      <children>
-                        <Label prefHeight="17.0" prefWidth="203.0" text="Jumlah Pengambllan">
+                        <Label prefHeight="17.0" prefWidth="203.0" text="Jumlah Peminjaman">
                            <font>
                               <Font name="Arial Bold" size="9.0" />
                            </font>
@@ -86,7 +97,7 @@
                                     <Font name="Arial Bold" size="25.0" />
                                  </font>
                               </Label>
-                              <JFXTextField fx:id="tfNik" focusColor="WHITE" prefHeight="37.0" prefWidth="348.0" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" unFocusColor="#4c4c4c00">
+                              <JFXTextField fx:id="tfJumlahPeminjaman" focusColor="WHITE" prefHeight="37.0" prefWidth="479.0" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" unFocusColor="#4c4c4c00">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
@@ -100,9 +111,9 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="73.0" prefWidth="898.0">
                <children>
-                  <VBox prefHeight="100.0" prefWidth="312.0">
+                  <VBox prefHeight="73.0" prefWidth="270.0">
                      <children>
                         <Label prefHeight="17.0" prefWidth="203.0" text="Tenor">
                            <font>
@@ -112,7 +123,7 @@
                               <Insets bottom="4.0" />
                            </VBox.margin>
                         </Label>
-                        <JFXComboBox fx:id="cbJenisKelamin1" prefHeight="0.0" prefWidth="226.0" promptText="Pilih" styleClass="box-combo" stylesheets="@../ViewStyle/generic.css" />
+                        <JFXComboBox fx:id="cbTenor" prefHeight="46.0" prefWidth="226.0" promptText="Pilih" styleClass="box-combo" stylesheets="@../ViewStyle/generic.css" />
                      </children>
                   </VBox>
                   <VBox prefHeight="100.0" prefWidth="312.0">
@@ -125,7 +136,7 @@
                               <Insets bottom="4.0" />
                            </VBox.margin>
                         </Label>
-                        <JFXComboBox fx:id="cbJenisKelamin" prefHeight="0.0" prefWidth="226.0" promptText="Pilih" styleClass="box-combo" stylesheets="@../ViewStyle/generic.css" />
+                        <JFXComboBox fx:id="cbTipeBunga" prefHeight="46.0" prefWidth="245.0" promptText="Pilih" styleClass="box-combo" stylesheets="@../ViewStyle/generic.css" />
                      </children>
                   </VBox>
                </children>
@@ -133,14 +144,48 @@
                   <Insets top="12.0" />
                </VBox.margin>
             </HBox>
-            <JFXButton disable="true" prefHeight="25.0" prefWidth="115.0" styleClass="btn" stylesheets="@../ViewStyle/generic.css" text="Submit">
-               <font>
-                  <Font name="Arial Bold" size="12.0" />
-               </font>
+            <HBox prefHeight="59.0" prefWidth="573.0">
+               <children>
+                  <VBox prefHeight="59.0" prefWidth="227.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="203.0" text="Suku Bunga">
+                           <font>
+                              <Font name="Arial Bold" size="9.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="4.0" top="8.0" />
+                           </VBox.margin>
+                        </Label>
+                        <JFXTextField fx:id="tfSukuBunga" focusColor="WHITE" prefHeight="37.0" prefWidth="508.0" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" unFocusColor="#4c4c4c00">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="26.0" prefWidth="898.0" spacing="20.0">
+               <children>
+                  <JFXButton fx:id="submitBtn" disable="true" onMouseClicked="#onMouseClickSubmitBtn" prefHeight="42.0" prefWidth="115.0" styleClass="btn" stylesheets="@../ViewStyle/generic.css" text="SUBMIT">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="btnEdit" onMouseClicked="#onClickUbahBtn" prefHeight="37.0" prefWidth="139.0" styleClass="btn-outline" stylesheets="@../ViewStyle/generic.css" text="EDIT">
+                     <font>
+                        <Font name="System Bold" size="10.0" />
+                     </font>
+                  </JFXButton>
+               </children>
                <VBox.margin>
-                  <Insets bottom="16.0" top="32.0" />
+                  <Insets top="32.0" />
                </VBox.margin>
-            </JFXButton>
+            </HBox>
+            <Label fx:id="responseLabel" prefHeight="17.0" prefWidth="387.0" textFill="#aadfaf">
+               <VBox.margin>
+                  <Insets bottom="32.0" top="16.0" />
+               </VBox.margin></Label>
          </children>
          <padding>
             <Insets left="8.0" />

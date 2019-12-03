@@ -16,7 +16,7 @@
          <children>
             <HBox prefHeight="59.0" prefWidth="573.0" spacing="12.0">
                <children>
-                  <VBox prefHeight="59.0" prefWidth="385.0">
+                  <VBox prefHeight="59.0" prefWidth="254.0">
                      <children>
                         <Label prefHeight="17.0" prefWidth="203.0" text="NIK Anggota">
                            <font>
@@ -29,7 +29,10 @@
                         <JFXPasswordField fx:id="tpfPassword" prefHeight="39.0" prefWidth="540.0" styleClass="form-text" stylesheets="@../ViewStyle/generic.css" />
                      </children>
                   </VBox>
-                  <Label text="cek" />
+                  <Label prefHeight="109.0" prefWidth="30.0" text="✓" textFill="#10a13c">
+                     <font>
+                        <Font size="30.0" />
+                     </font></Label>
                </children>
                <VBox.margin>
                   <Insets top="12.0" />
@@ -37,7 +40,7 @@
             </HBox>
             <HBox prefHeight="59.0" prefWidth="573.0">
                <children>
-                  <VBox prefHeight="59.0" prefWidth="429.0">
+                  <VBox prefHeight="59.0" prefWidth="316.0">
                      <children>
                         <Label prefHeight="17.0" prefWidth="203.0" text="Nama Anggota">
                            <font>

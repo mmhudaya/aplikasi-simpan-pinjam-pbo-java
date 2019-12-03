@@ -10,6 +10,7 @@ import Core.Database.CoreDatabaseTable;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -49,9 +50,10 @@ public class Pendaftar extends CoreDatabaseTable<Pendaftar>{
     }
     
     public boolean aktifasi(){
-        HashMap<String, Object> values = new HashMap<>();
+        LinkedHashMap<String, Object> values = new LinkedHashMap<>();
         values.put("is_aktif", true);
         values.put("is_stop", false);
+        values.put("is_pengurus", false);
         java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
         values.put("tgl_aktif", date);
         HashMap<String, Object> whereValues = new HashMap<>();
@@ -86,19 +88,22 @@ public class Pendaftar extends CoreDatabaseTable<Pendaftar>{
     
     @Override
     public HashMap<String, Object> getValuesFromModelAttribute() {
-        HashMap<String, Object> values = new HashMap<>();
+        LinkedHashMap<String, Object> values = new LinkedHashMap<>();
         values.put("nik", this.nik);
         values.put("nama", this.nama);
         values.put("ttl", this.ttl);
         values.put("jenis_kelamin", this.jenisKelamin);
         values.put("golongan_darah", this.golonganDarah);
+        values.put("agama", this.agama);
         values.put("pekerjaan", this.pekerjaan);
         values.put("alamat", this.alamat);
         values.put("email", this.email);
         values.put("no_telp", this.noTelp);
         values.put("email", this.email);
         values.put("password", this.password);
+        values.put("is_pengurus", false);
         values.put("is_aktif", false);
+        values.put("is_stop", false);
                 
         return values;
     }

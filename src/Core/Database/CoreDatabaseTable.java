@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -61,6 +62,24 @@ public abstract class CoreDatabaseTable<T> implements IDatabaseTable{
         return null;
     }
     
+    
+    public List<Object[]> getAllObject() {
+        String query = this.getSelectAllQuery();
+        List<Object[]> rows = new ArrayList<>();
+        
+        try{
+            ResultSet rs = this.db.getStatement().executeQuery(query);
+            while(rs.next()){
+                rows.add(this.getRow(rs));
+            }
+            return rows;
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        
+        return null;
+    }
+    
     @Override
     public List<T> getAllByFilter(HashMap<String, Object> whereValue) {
         String query = this.getSelectAllQuery() +" "+this.getWhereClauseQuery(whereValue);
@@ -82,6 +101,27 @@ public abstract class CoreDatabaseTable<T> implements IDatabaseTable{
         
         return null;
     }
+    
+    public List<Object[]> getAllObjectByFilter(HashMap<String, Object> whereValue) {
+        String query = this.getSelectAllQuery() +" "+this.getWhereClauseQuery(whereValue);
+        List<Object[]> rows = new ArrayList<>();
+        
+        System.out.println(query);
+        try{
+            PreparedStatement pst = this.db.getPrepareStatement(query);
+            pst = this.getAllPreparementStatement(pst, whereValue);
+            ResultSet rs = pst.executeQuery();
+            while(rs.next()){
+                rows.add(this.getRow(rs));
+            }
+            
+            return rows;
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        
+        return null;
+    }
 
     @Override
     public Object[] get(String key, Object value) {
@@ -90,7 +130,7 @@ public abstract class CoreDatabaseTable<T> implements IDatabaseTable{
         try{
             PreparedStatement pst = this.db.getPrepareStatement(query);
             pst = this.getPreparedStatementType(pst, 1, value);
-            ResultSet rs = pst.executeQuery(query);
+            ResultSet rs = pst.executeQuery();
             if(rs.next()){
                 return this.getRow(rs);
             }
@@ -191,31 +231,33 @@ public abstract class CoreDatabaseTable<T> implements IDatabaseTable{
     }
 
     @Override
-    public void customCUDQuery(String query) {
+    public boolean customCUDQuery(String query) {
         try{
             int rowUpdated = this.db.getStatement().executeUpdate(query);
             
             if(rowUpdated > 0){
                 System.out.println("Success custom query execution");
+                return true;
             }else{
                 System.out.println("Something Error occured");
+                return false;
             }
         }catch(Exception ex){
             ex.printStackTrace();
         }
+        return false;
     }
 
     @Override
     public List<Object[]> customReadQuery(String query, int columnLength) {
         List<Object[]> rows = new ArrayList<>();
         try{
-            int rowUpdated = this.db.getStatement().executeUpdate(query);
             ResultSet rs = this.db.getStatement().executeQuery(query);
             
             while(rs.next()){
                 Object[] row = new Object[columnLength];
-                for(int i=0; i<=columnLength; i++){
-                    row[i] = rs.getObject(i);
+                for(int i=0; i< columnLength; i++){
+                    row[i] = rs.getObject(i+1);
                 }
                 rows.add(row);
             }
@@ -231,12 +273,12 @@ public abstract class CoreDatabaseTable<T> implements IDatabaseTable{
     @Override
     public Object[] customReadOneQuery(String query, int columnLength) {
         try{
-            int rowUpdated = this.db.getStatement().executeUpdate(query);
+            System.out.println(query);
             ResultSet rs = this.db.getStatement().executeQuery(query);
             Object[] row = new Object[columnLength];
             if(rs.next()){
-                for(int i=0; i<=columnLength; i++){
-                    row[i] = rs.getObject(i);
+                for(int i=0; i< columnLength; i++){
+                    row[i] = rs.getObject(i+1);
                 }
             }
             
@@ -274,6 +316,15 @@ public abstract class CoreDatabaseTable<T> implements IDatabaseTable{
             pst.setLong(index, (Long) value);
         }else if(value instanceof Timestamp){
             pst.setTimestamp(index,(Timestamp) value);
+        }else if(value instanceof Double){
+            pst.setDouble(index,(Double) value);
+        }else if(value instanceof java.util.Date){
+            java.util.Date utilDate = (java.util.Date) value;
+            pst.setDate(index, (Date) new java.sql.Date(utilDate.getTime()));
+        }else{
+            System.out.println("here");
+            System.out.println(index);
+            System.out.println(value.getClass());
         }
         
         return pst;
